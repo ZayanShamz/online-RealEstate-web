@@ -1,0 +1,182 @@
+@font-face {
+    font-family: 'gamilia';
+    src:
+        url('src/static/fonts/gamilia-demo.regular.otf')
+        format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+#login-box {
+ border-radius: 25px;
+ box-shadow: 0 10px 20px rgba(69, 105, 144, 0.19), 0 1px 15px rgba(69, 105, 144, 0.23);
+ -webkit-box-shadow: 0 10px 20px rgba(69, 105, 144, 0.19), 0 1px 15px rgba(69, 105, 144, 0.23);
+ transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#login-box:hover{
+ box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 1px 15px rgba(76, 0, 0, 0.23);
+ -webkit-box-shadow: 0 10px 20px rgba(244, 91, 105, 0.12), 0 1px 15px rgba(244, 91, 105, 0.24);
+ transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#login-box .inputs{
+    border-color: #BBBABE;
+}
+
+#login-box h3{
+    color: #F45B69;
+    cursor: default;
+}
+
+#login-box .inputs:hover{
+    border-color: #456990;
+    color: #F45B69;
+    box-shadow: 0 10px 20px rgba(69, 105, 144, 0.19), 0 1px 15px rgba(69, 105, 144, 0.23);
+    -webkit-box-shadow: 0 10px 20px rgba(69, 105, 144, 0.19), 0 1px 15px rgba(69, 105, 144, 0.23);
+    transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#login-link{
+ text-decoration: none;
+ color: #456990;
+}
+
+#login-link:hover{
+ color: #F45B69;
+}
+
+#login-btn{
+ background-color: #456990;
+ border-color: #456990;
+ color: #DFDFDF;
+}
+
+#login-btn:hover{
+ background-color: #F45B69;
+ border-color: #F45B69;
+}
+
+
+#admin-hme .admin-btns {
+ border-color: #F45B69;
+ border-radius: 25px;
+ font-family: "gamilia", serif;
+}
+
+#admin-hme .admin-btns:hover {
+ border-color: #456990;
+ background-color: #456990;
+ color: #DFDFDF;
+}
+
+.listHover:hover {
+ border-radius: 10px;
+ background-color: #C8E0F4;
+}
+
+.loctag{
+  margin-top: -5px;
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px;
+  cursor: pointer;
+}
+.loctag a{
+  text-decoration: none;
+  color: #575f5a;
+}
+
+#text-container {
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#text-container1 {
+  width: 600px;
+  word-wrap: break-word;
+  font-size: 12px;
+}
+
+.search{
+  margin-right: 10px;
+}
+
+.card-img-top{
+  width :100px ;
+  height:50px;
+}
+
+#editBtn{
+  color: #c60a0a;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.loc{
+  margin-top: -5px;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 180px;
+  cursor: pointer;
+}
+
+
+.user-box {
+ background-color: #D7EBFB;
+ border-radius: 25px;
+ box-shadow: 0 10px 20px rgba(157, 209, 241, 0.19), 0 1px 15px rgba(157, 209, 241, 0.23);
+ -webkit-box-shadow: 0 10px 20px rgba(157, 209, 241, 0.19), 0 1px 15px rgba(157, 209, 241, 0.23);
+ transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.user-box:hover{
+ color: #1D2F6F;
+ box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 1px 15px rgba(76, 0, 0, 0.23);
+ -webkit-box-shadow: 0 10px 20px rgba(69, 105, 144, 0.24), 0 1px 15px rgba(69, 105, 144, 0.24);
+ transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
+ cursor: pointer;
+}
+
+
+
+.tabs-container {
+    background-color: #456990;
+    display: flex;
+}
+
+.tab {
+    background-color: #456990;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    cursor: pointer;
+    flex: 1;
+    text-align: center;
+}
+
+.tab.active {
+    background-color: #F45B69;
+}
+
+.tab-content {
+    padding: 20px;
+    text-align: center;
+}
+
+#usr_cntrols .user-btns{
+ background-color: #456990;
+ border-color: #456990;
+ color: #DFDFDF;
+}
+
+#usr_cntrols .user-btns:hover{
+ background-color: #F45B69;
+ border-color: #F45B69;
+}

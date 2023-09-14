@@ -1,0 +1,33 @@
+{% extends "design.html" %}
+
+{% block title%} Dealers @RealEstate {% endblock %}
+
+{% block body %}
+<div class="container mt-3" style="width:50%;">
+{% for i in dealers %}
+    <div class="col-sm-12">
+      <div class="listHover row" onclick="window.location='/viewDealer/{{ i[1] }}'">
+          <div class="col-4">
+              <strong>Dealer Id : {{ i[0] }} </strong><br>
+              <small>Age : {{ i[8]|int }}</small>
+              <br>
+              <small>Gender : {{ i[5] }}</small>
+          </div>
+          <div class="col-5">
+              <strong>Name : {{ i[2] }}</strong>
+              <br>
+              <small>Phone : {{ i[4] }}</small>
+              <br>
+              <small>Email : {{ i[3] }}</small>
+          </div>
+          <div class="col-3 mt-3">
+              <a class="btn btn-danger btn-sm" href="/removeDealer/{{ i[1] }}">Remove Dealer</a>
+          </div>
+      </div>
+    </div>
+    <hr>
+{% endfor %}
+</div>
+
+
+{% endblock %}

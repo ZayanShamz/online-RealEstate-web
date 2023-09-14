@@ -1,0 +1,48 @@
+{% extends "design.html" %}
+
+{% block title%} Plots @RealEstate{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="main-body d-flex justify-content-center">
+		<div class="col-md-6 my-3">
+		  <div class="card mt-3">
+			 <div class="card-body">
+              <div class="table-responsive">
+                  <table class="table" align="center">
+                    <thead>
+                      <tr>
+                        <th scope="col">Plot Details</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">County</th>
+                        <th scope="col" >Status</th>
+                        <th scope="col" ></th>
+
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for i in plots %}
+                      <tr class="listHover clickable" onclick="window.location='/viewPlot/{{ i[0] }}'">
+                        <td>{{ i[0] }} - {{ i[2] }} <br>
+                          <span class="loc d-block text-black-50" title="{{ i[3] }}">{{ i[3] }}</span>
+                          Owner/Dealer : {{ i[15] }}
+                        </td>
+                        <td>{{ i[5] }}</td>
+                        <td>{{ i[6] }}</td>
+                        <td>{{ i[13] }}, {{ i[14] }}</td>
+                        <td>{{ i[10] }}</td>
+                        <td valign="center"><a class="btn btn-danger btn-md" href="/deletePlot/{{ i[0] }}">Remove</a></td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+             </div>
+          </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

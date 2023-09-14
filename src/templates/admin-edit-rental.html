@@ -1,0 +1,192 @@
+{% extends "design.html" %}
+{% block title%}Edit Rental{% endblock %}
+{% block body %}
+
+<form action="/editRental/{{ rental[0] }}" method="post" enctype="multipart/form-data">
+	<input type="hidden" name="rental" value="{{ rental[0] }}">
+        <div class="container my-3">
+            <div class="main-body d-flex justify-content-center">
+                <div class="col-md-6 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row align-items-center pt-2">
+                              <div class="col-md-3">
+                                <h6 class="mb-0">Name</h6>
+                              </div>
+                              <div class="col-md-9 ">
+                                <input type="text" name="rname" id="rname" class="form-control form-control-md" value="{{ rental[2] }}"/>
+                              </div>
+                            </div>
+
+                            <hr class="mx-n3">
+
+                            <div class="row align-items-center pt-2 mb-3">
+                              <div class="col-md-3">
+                                <h6 class="mb-0">Address</h6>
+                              </div>
+                              <div class="col-md-9 ">
+                                <p>{{ rental[3] }}</p>
+                              </div>
+                            </div>
+
+                            <div class="row align-items-center">
+                              <div class="col-md-3">
+                                <a class="btn btn-outline-secondary btn-sm" href="#"
+                                   data-bs-toggle="modal" data-bs-target="#locationModal">Change Address</a>
+                              </div>
+                              <div class="col-md-4 ">
+                                <input type="text" id="lat" name="lat" class="form-control form-control-md" placeholder="Latitude">
+                              </div>
+                              <div class="col-md-4 ">
+                                <input type="text" id="lon" name="lon" class="form-control form-control-md" placeholder="Longitude">
+                              </div>
+                            </div>
+
+                            <hr class="mx-n3">
+
+                            <div class="row align-items-center">
+                              <div class="col-md-3">
+                                <h6 class="mb-0">Storeys/Rooms</h6>
+                              </div>
+                              <div class="col-md-9">
+                                <div class="form-group">
+                                  <select class="form-control form-control-md" name="storey" id="storey">
+                                      <option value="{{ rental[6] }}">{{ rental[6] }}</option>
+                                      <option value="Single Storey Single Room">Single Storey Single Room</option>
+                                      <option value="Single Storey Multi Rooms">Single Storey Multi Rooms</option>
+                                      <option value="Multi Storey Single Rooms">Multi Storey Single Rooms</option>
+                                      <option value="Multi Storey Multi Rooms">Multi Storey Multi Rooms</option>
+                                  </select>
+                                </div>
+                              </div>
+                            </div>
+
+                            <hr>
+
+                            <div class="row align-items-center">
+                              <div class="col-md-3">
+                                <h6 class="mb-0">Rental Area</h6>
+                              </div>
+                              <div class="col-md-9 ">
+                                <input type="text" id="area" name="area" class="form-control form-control-md" value="{{ rental[4] }}"/>
+                              </div>
+                            </div>
+
+                            <hr class="mx-n3">
+
+                            <div class="row align-items-center">
+                              <div class="col-md-3">
+                                <h6 class="mb-0">Rent</h6>
+                              </div>
+                              <div class="col-md-9 ">
+                                <input type="text" id="rent" name="rent" class="form-control form-control-md" value="{{ rental[5] }}"/>
+                              </div>
+                            </div>
+
+                            <hr class="mx-n3">
+
+                            <div class="row align-items-center">
+                              <div class="col-md-3">
+                                <h6 class="mb-0">Dealer</h6>
+                              </div>
+                              <div class="col-md-9 ">
+                                <div class="form-outline">
+                                    <select class="form-control form-control-md" id="dealer" name="dealer">
+                                        <option value="{{ rental[14] }}" selected>{{ rental[14] }}</option>
+                                        {% for i in dealer %}
+                                        <option value="{{ i[0] }}">{{ i[1] }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                              </div>
+                            </div>
+
+                             <hr class="mx-n3">
+
+                            <div class="row align-items-center mb-3">
+                              <div class="col-md-3">
+                                <h6 class="mb-0">Add Photos</h6>
+                              </div>
+
+                              <div class="col-md-9">
+                                <input type="file" name="files" class="form-control form-control-md" multiple>
+                              </div>
+                            </div>
+
+                            <hr class="mx-n3">
+
+                            <div class="row py-3">
+                                <div class="col-sm-6 d-flex justify-content-center">
+                                  <a href="/viewRental/{{ rental[0] }}" class="btn btn-outline-secondary">Back</a>
+                                </div>
+                                <div class="col-sm-6 d-flex justify-content-center">
+                                    <button type="submit" class="btn btn-outline-danger">UPDATE</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</form>
+
+<!-- ------------------------LOCATION MODAL-------------------- -->
+
+    <div class="modal fade" id="locationModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="locationTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="locationTitle">Select Location</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div  id="googleMap" align="center" style="width:100%;height:350px;">
+
+            </div>
+              <hr>
+            <form method="post" enctype="multipart/form-data" name="form1" id="form1" action="/action_location">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-outline">
+                            <small>Latitude :</small>
+                            <input type="text" name="lat1" id="lat1" class="form-control" placeholder="Latitude">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-outline">
+                          <small>Longitude :</small>
+                          <input type="text" name="lon1" id="lon1" class="form-control form-control-md" placeholder="Longitude"/>
+                      </div>
+                    </div>
+                </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <a class="btn btn-secondary" href="#photoUpload" data-bs-toggle="modal" data-bs-dismiss="modal" onclick="">Select</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+    function myMap() {
+        var mapProp= {
+            center:new google.maps.LatLng(12.508742,75.120850),
+            zoom:5,
+        };
+        var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+        google.maps.event.addListener(map, 'click', function(event) {
+            //alert(event.latLng.lat() + ", " + event.latLng.lng());
+            document.getElementById("lat").value=event.latLng.lat();
+            document.getElementById("lon").value=event.latLng.lng();
+            document.getElementById("lat1").value=event.latLng.lat();
+            document.getElementById("lon1").value=event.latLng.lng();
+        });
+    }
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJKQEiMYJvUzXzKeaGIK0754YOuTad_bQ&callback=myMap"></script>
+
+
+{% endblock %}

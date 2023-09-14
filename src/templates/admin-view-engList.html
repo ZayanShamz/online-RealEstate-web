@@ -1,0 +1,48 @@
+{% extends "design.html" %}
+
+{% block title%} Engineers @RealEstate {% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="main-body d-flex justify-content-center">
+		<div class="col-md-7 my-3">
+		  <div class="card mt-3">
+			 <div class="card-body">
+              <div class="table-responsive">
+                  <table class="table" align="center">
+                    <thead>
+                      <tr>
+                        <th scope="col">Details</th>
+                        <th scope="col">Discipline</th>
+                        <th scope="col">Experience</th>
+                        <th scope="col">Locality</th>
+                        <th scope="col" >Contact</th>
+                        <th scope="col" ></th>
+
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for i in res %}
+                      <tr  class="clickable" onclick="window.location='/viewEngineer/{{ i[0] }}'">
+                        <td>{{ i[0] }} - {{ i[1] }} <br>
+                          {{ i[10]|int }} - {{ i[6] }}
+                        </td>
+                        <td>{{ i[3] }}</td>
+                        <td>{{ i[2] }} Years</td>
+                          <td><span class="loc d-block text" title="{{ i[8] }}">{{ i[8] }}</span></td>
+                        <td>Email : {{ i[4] }}
+                        <br>Phone : {{ i[5] }}</td>
+                        <td valign="center"><a class="btn btn-danger btn-md" href="/deletePlot/{{ i[0] }}">Remove</a></td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+             </div>
+          </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

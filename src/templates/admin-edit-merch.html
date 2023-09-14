@@ -1,0 +1,164 @@
+{% extends "design.html" %}
+
+{% block title%} Edit Merchant {% endblock %}
+
+{% block body %}
+
+
+<div class="container py-4 h-100">
+	<div class="row justify-content-center align-items-center h-100">
+	  <div class="col-12 col-lg-9 col-xl-7">
+		<div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+		  <div class="card-body p-4 p-md-3">
+			<div class="d-flex justify-content-center">
+			  <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Edit Merchant</h3>
+			</div>
+
+			<form action="/editMerchant/{{merch[0]}}" method="post" enctype="multipart/form-data">
+
+				<div class="row px-3 mb-4">
+					<div class="col-md-6">
+						<div class="form-outline">
+                            <label for="ename">Name</label>
+							<input type="text" id="ename" name="ename" class="form-control form-control-md" value="{{ merch[1] }}"/>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-outline">
+							<label for="ename">DOB</label>
+                           <input type="date" name="dob" id="dob" class="form-control"  value="{{ merch[2] }}">
+						</div>
+					</div>
+				</div>
+
+				<div class="row px-3 mb-4">
+					<div class="col-md-6">
+						<div class="form-outline">
+                            <label for="email">Email</label>
+							<input type="text" id="email" name="email" class="form-control form-control-md" value="{{ merch[5] }}"/>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<label for="phone">Phone</label>
+						<input type="text" id="phone" name="phone" class="form-control form-control-md" value="{{ merch[4] }}"/>
+					</div>
+				</div>
+
+				<div class="row px-3">
+					<div class="col-md-6">
+						<label>Business Name</label>
+						<input type="text" id="bname" name="bname" class="form-control form-control-md" value="{{ merch[5] }}"/>
+					</div>
+					<div class="col-md-6">
+						<label>Business Type</label>
+						<select class="form-control form-control-md" id="btype" name="btype">
+							<option value="{{ merch[6] }}">Select </option>
+							<option value="Furniture">Furniture</option>
+							<option value="Sanitary">Sanitary</option>
+							<option value="Paint">Paint</option>
+							<option value="Plumbing">Plumbing</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="row px-3 mb-4">
+					<div class="col-md-6 mt-2">
+                        <div class="row my-3">
+							<div class="col-md-12 ">
+                                <b>Current Location :</b> {{ merch[7] }}
+								<input type="hidden" name="loc" value="{{ merch[7] }}">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md d-flex justify-content-center">
+								<a class="btn btn-outline-secondary btn-sm" href="#"
+								   data-bs-toggle="modal" data-bs-target="#locationModal">Change Location</a>
+                                <input type="hidden" name="lat" id="lat">
+                                <input type="hidden" name="lon" id="lon">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 mt-4">
+								<div class="form-outline">
+									<label for="files">Change Photo</label>
+									<input type="file" name="files" id="files" class="form-control form-control-md">
+									<input type="hidden" name="fname" value="{{ merch[8] }}">
+								</div>
+					</div>
+				</div>
+
+				<div class="row px-3 mb-4">
+					<div>
+						<div class="d-flex justify-content-center">
+							<input class="btn btn-outline-danger btn-md" type="submit" value="Submit Changes" style="width:25%;"/>
+						</div>
+					</div>
+				</div>
+			</form>
+		  </div>
+		</div>
+	  </div>
+	</div>
+</div>
+
+<!-- ------------------------LOCATION MODAL-------------------- -->
+
+    <div class="modal fade" id="locationModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="locationTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="locationTitle">Select Location</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div  id="googleMap" align="center" style="width:100%;height:350px;">
+
+            </div>
+              <hr>
+            <form method="post" enctype="multipart/form-data" name="form1" id="form1" action="/action_location">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-outline">
+                            <small>Latitude :</small>
+                            <input type="text" name="lat" id="lat1" class="form-control" placeholder="Latitude">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-outline">
+                          <small>Longitude :</small>
+                          <input type="text" name="lon" id="lon1" class="form-control form-control-md" placeholder="Longitude"/>
+                      </div>
+                    </div>
+                </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <a class="btn btn-secondary" href="#photoUpload" data-bs-toggle="modal" data-bs-dismiss="modal">Select</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<script>
+    function myMap() {
+        var mapProp= {
+            center:new google.maps.LatLng(12.508742,75.120850),
+            zoom:5,
+        };
+        var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+        google.maps.event.addListener(map, 'click', function(event) {
+            //alert(event.latLng.lat() + ", " + event.latLng.lng());
+            document.getElementById("lat").value=event.latLng.lat();
+            document.getElementById("lon").value=event.latLng.lng();
+            document.getElementById("lat1").value=event.latLng.lat();
+            document.getElementById("lon1").value=event.latLng.lng();
+        });
+    }
+</script>
+<script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJKQEiMYJvUzXzKeaGIK0754YOuTad_bQ&callback=myMap">
+</script>
+
+
+{% endblock %}

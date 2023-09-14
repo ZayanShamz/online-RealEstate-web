@@ -1,0 +1,142 @@
+{% extends "design-user.html" %}
+{% block title%} Add plot {% endblock %}
+
+
+{% block body %}
+	<div class="container py-4 h-100">
+		<div class="row justify-content-center align-items-center h-100">
+		  <div class="col-12 col-lg-9 col-xl-7" id="login-box">
+				<div class="d-flex justify-content-center">
+				  <h3 class="mb-4 pb-2 mt-3" style="color:#F45B69;cursor:default;">Add your plot to Realtor</h3>
+				</div>
+
+				<form action="/userAddPlot" method="post" enctype="multipart/form-data">
+
+				  <div class="row mb-4 px-3">
+					<div class="col-md-12">
+					  <div class="form-outline">
+						<input type="text" id="pname" name="pname" class="form-control inputs" placeholder="Enter Plot Name"/>
+					  </div>
+					</div>
+				  </div>
+
+
+				  <div class="row mb-4 px-3">
+					<div class="col-md-6">
+					  <div class="form-outline">
+						<input type="text" id="area" name="area" class="form-control inputs" placeholder="Enter Plot Area (in Square Feet)"/>
+					  </div>
+					</div>
+					<div class="col-md-6">
+						  <div class="form-outline">
+							  <select class="form-control inputs" id="ptype" name="ptype">
+								    <option value="">Select Pot Type</option>
+								    <option value="land">Land</option>
+                                    <option value="building">Building</option>
+                                    <option value="home">Home</option>
+					 	      </select>
+						  </div>
+					  </div>
+				  </div>
+
+				  <div class="row mb-4 px-3">
+					  <div class="col-md-6 d-flex justify-content-center">
+						  <a class="btn btn-outline-secondary btn-sm" href="#"
+							 data-bs-toggle="modal" data-bs-target="#locationModal">Select Plot Location</a>
+					  </div>
+					  <div class="col-md-6">
+						  <div class="form-outline">
+							  <input type="text" name="price" class="form-control inputs" placeholder="Enter Price">
+						  </div>
+					  </div>
+				  </div>
+				  <div class="row mb-4 px-3">
+					  <div class="col-md-3">
+						  <div class="form-outline">
+							  <input type="text" name="lat" id="lat" class="form-control inputs" placeholder="Latitude">
+						  </div>
+					  </div>
+					  <div class="col-md-3">
+						  <div class="form-outline">
+							  <input type="text" name="lon" id="lon" class="form-control inputs" placeholder="Longitude"/>
+						  </div>
+					  </div>
+					  <div class="col-md-6">
+						  <div class="form-outline">
+							  <input type="file" name="files" class="form-control inputs" multiple>
+						  </div>
+					  </div>
+				  </div>
+
+				  <div class="row mb-4 px-3">
+					  <div>
+						 <div class="d-flex justify-content-center">
+							<input class="btn" id="login-btn" type="submit" value="ADD" style="width:25%;"/>
+						 </div>
+					  </div>
+				  </div>
+				</form>
+		  </div>
+		</div>
+	</div>
+
+<!-- ------------------------LOCATION MODAL-------------------- -->
+
+    <div class="modal fade" id="locationModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="locationTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="locationTitle">Select Location</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div  id="googleMap" align="center" style="width:100%;height:350px;">
+
+            </div>
+              <hr>
+            <form method="post" enctype="multipart/form-data" name="form1" id="form1" action="/action_location">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-outline">
+                            <small>Latitude :</small>
+                            <input type="text" name="lat1" id="lat1" class="form-control" placeholder="Latitude">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-outline">
+                          <small>Longitude :</small>
+                          <input type="text" name="lon1" id="lon1" class="form-control form-control-md" placeholder="Longitude"/>
+                      </div>
+                    </div>
+                </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <a class="btn btn-secondary" href="" data-bs-toggle="modal" data-bs-dismiss="modal" onclick="">Select</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+    function myMap() {
+        var mapProp= {
+            center:new google.maps.LatLng(12.508742,75.120850),
+            zoom:5,
+        };
+        var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+        google.maps.event.addListener(map, 'click', function(event) {
+            //alert(event.latLng.lat() + ", " + event.latLng.lng());
+            document.getElementById("lat").value=event.latLng.lat();
+            document.getElementById("lon").value=event.latLng.lng();
+            document.getElementById("lat1").value=event.latLng.lat();
+            document.getElementById("lon1").value=event.latLng.lng();
+        });
+    }
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJKQEiMYJvUzXzKeaGIK0754YOuTad_bQ&callback=myMap"></script>
+
+
+{% endblock %}

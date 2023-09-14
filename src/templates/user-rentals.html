@@ -1,0 +1,63 @@
+{% extends "design-user.html" %}
+
+{% block title%}My Rentals @Realtor {% endblock %}
+
+
+{% block body %}
+<div class="container-fluid">
+    <div class="main-body d-flex justify-content-center">
+		<div class="col-md-6 my-3">
+		  <div class="card mt-3">
+			 <div class="card-body">
+                 {% if rental %}
+                 <div class="row">
+                     <div class="col-md-10 d-flex justify-content-center">
+                         <h3> Your Rentals </h3>
+                     </div>
+                     <div class="col-md-2 d-flex justify-content-end">
+                         <a href="/userHome" class="btn btn-secondary me-3">Back</a>
+                     </div>
+                 </div>
+                 <hr>
+                 <div class="table-responsive">
+                  <table class="table" align="center">
+                    <thead>
+                      <tr>
+                        <th scope="col">Rental Details</th>
+                        <th scope="col">Rent</th>
+                        <th>Storey/Rooms</th>
+                        <th scope="col">Place</th>
+                        <th>Requests</th>
+
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                      {% for i in rental %}
+                      <tr  class="clickable" onclick="window.location='/userRental/{{ i[0] }}'">
+                        <td>{{ i[0] }} - {{ i[2] }} <br>
+                          <span class="loc d-block text-black-50" title="{{ i[3] }}">{{ i[3] }}</span>
+                          Area : {{ i[4] }} sqrft<br>
+                        </td>
+                        <td>{{ i[5] }}</td>
+                        <td>{{ i[6] }}</td>
+                        <td>{{ i[12] }}, {{ i[13] }}</td>
+                        <td align="center">{{ i[11] }}</td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+               {% else %}
+                <h3 align="center">You Have No Rentals Yet</h3>
+                 <h6 align="center" onclick="window.location='/userAddRental'" style="cursor:pointer;">
+                     Add Your Rental to Realtor</h6>
+               {% endif %}
+             </div>
+          </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

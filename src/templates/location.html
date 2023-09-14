@@ -1,0 +1,69 @@
+
+{% extends "design.html" %}
+{% block title%} Location {% endblock %}
+
+
+
+{% block body %}
+
+    <section style="background-color: #eee;">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="card mb-4">
+                        <div class="card-body text-center">
+                            <h5 class="my-3">Select your plot on the map</h5>
+
+                            <form name="form1" id="form1" action="/location" method="post"
+                                enctype="multipart/form-data">
+
+                                <input type="text" name="lat" id="lat" class="form-control my-2"
+                                    placeholder="Latitude" />
+                                <input type="text" name="lon" id="lon" class="form-control my-2"
+                                    placeholder="longitude" />
+
+
+                                <input name="btn" class="btn btn-primary" id="btn" type="submit" value="Submit" />
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="row">
+                                <div id="column-left">
+                                    <div id="googleMap" align="center" style="width:100%;height:450px;">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        <script>
+        function myMap() {
+            var mapProp = {
+                center: new google.maps.LatLng(12.508742, 75.120850),
+                zoom: 5,
+            };
+            var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+
+            google.maps.event.addListener(map, 'click', function (event) {
+                //alert(event.latLng.lat() + ", " + event.latLng.lng());
+                document.getElementById("lat").value = event.latLng.lat();
+                document.getElementById("lon").value = event.latLng.lng();
+            });
+        }
+    </script>
+    <div align="center">
+        <script
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJKQEiMYJvUzXzKeaGIK0754YOuTad_bQ&callback=myMap"></script>
+    </div>
+
+
+{% endblock %}

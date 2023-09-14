@@ -1,0 +1,45 @@
+{% extends "design.html" %}
+
+{% block title%} Rentals @RealEstate {% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="main-body d-flex justify-content-center">
+		<div class="col-md-7 my-3">
+		  <div class="card mt-3">
+			 <div class="card-body">
+              <div class="table-responsive">
+                  <table class="table" align="center">
+                    <thead>
+                      <tr>
+                        <th>Rental Details</th>
+                        <th>Storey/Rooms</th>
+                        <th>Rent</th>
+                        <th>County</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for i in rentals %}
+                      <tr  class="listHover clickable" onclick="window.location='/viewRental/{{ i[0] }}'">
+                          <td><strong>{{ i[0] }} - {{ i[2] }}</strong> <br>
+                              <span class="loc d-block text-black-50" title="{{ i[3] }}">{{ i[3] }}</span>
+                              <small>Owner/Dealer : <strong>{{ i[15] }}</strong></small>
+                          </td>
+                        <td>{{ i[6] }}</td>
+                        <td>Rs {{ i[5] }}</td>
+                        <td>{{ i[14] }}, {{ i[13] }}</td>
+                        <td valign="center"><a class="btn btn-danger btn-md" href="/deleteRental/{{ i[0] }}">Remove</a></td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+             </div>
+          </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

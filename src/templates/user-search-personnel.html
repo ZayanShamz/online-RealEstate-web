@@ -1,0 +1,205 @@
+{% extends "design-user.html" %}
+{% block title%} Searching Personnel{% endblock %}
+
+{% block body %}
+<div class="container py-4 h-100">
+	<div class="row justify-content-center align-items-center h-100" id="usr_cntrols">
+	  <div class="col-12 col-lg-9 col-xl-7">
+            <div class="tabs-container">
+                <button class="tab active" onclick="openTab('tab1')">Engineers</button>
+                <button class="tab" onclick="openTab('tab2')">Merchants</button>
+            </div>
+            <div class="tab-content" id="tab1-content">
+                <h2 class="py-3">Find Engineers</h2>
+                <form action="/userSearchEng" method="post" role="search">
+					<div class="row d-flex justify-content-center">
+						<div class="col-md-3 mb-1">
+							<div class="form-outline"></div>
+						</div>
+						<div class="col-md-4 mb-1">
+							<div class="form-outline">
+								<input class="form-control me-2" type="search" name="ename" placeholder="Enter Engineer Name">
+							</div>
+						</div>
+						<div class="col-md-5 d-flex justify-content-start mb-2">
+							<div class="form-outline">
+								<button class="btn user-btns ms-2" type="submit" name="sub" value="eng">Search</button>
+							</div>
+						</div>
+					</div>
+
+					<div class="row d-flex justify-content-center">
+						<div class="col-md-6 d-flex justify-content-center">
+							<h5 class="mb-2 pb-md-0">Or</h5>
+						</div>
+					</div>
+
+					<div class="row d-flex justify-content-center">
+						<div class="col-md-3 mb-1">
+							  <div class="form-outline"></div>
+						</div>
+						<div class="col-md-4 mb-1">
+							  <div class="form-outline">
+								<input class="form-control me-2" type="search" name="eplace" placeholder="Search by place" aria-label="Search">
+							  </div>
+						</div>
+						<div class="col-md-5 d-flex justify-content-start mb-2">
+							  <div class="form-outline">
+								  <button class="btn user-btns ms-2" type="submit" name="sub" value="place1">Search</button>
+							  </div>
+						</div>
+					</div>
+
+					<div class="row d-flex justify-content-center">
+						<div class="col-md-6 d-flex justify-content-center">
+							<h5 class="mb-2 pb-md-0">Or</h5>
+						</div>
+					</div>
+
+					<div class="row d-flex justify-content-center">
+						<div class="col-md-6 mb-4 pb-2">
+							<div class="form-outline">
+								<select class="form-control form-control-md" id="disc" name="disc">
+									<option value="">Search By Discipline</option>
+									<option value="civil engineer">Civil Engineering</option>
+									<option value="mechanical engineer">Mechanical Engineering</option>
+									<option value="electrical engineer">Electrical Engineering</option>
+									<option value="chemical engineer">Chemical Engineering</option>
+								</select>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="d-flex justify-content-center">
+							<div class="form-outline">
+								<button class="btn user-btns" type="submit" name="sub" value="Discipline">Search</button>
+							</div>
+						</div>
+					</div>
+				</form>
+            </div>
+            <div class="tab-content" id="tab2-content" style="display: none;">
+                <h2 class="py-3">Find Merchants</h2>
+                <form action="/userSearchMerc" method="post" role="search">
+					<div class="row d-flex justify-content-center">
+						<div class="col-md-3 mb-1">
+							<div class="form-outline"></div>
+						</div>
+						<div class="col-md-4 mb-1">
+							<div class="form-outline">
+								<input class="form-control me-2" type="search" name="mname" placeholder="Search By Merchant Name">
+							</div>
+						</div>
+						<div class="col-md-5 d-flex justify-content-start mb-2">
+							<div class="form-outline">
+								<button class="btn user-btns ms-2" type="submit" name="sub" value="merch">Search</button>
+							</div>
+						</div>
+					</div>
+
+					<div class="row d-flex justify-content-center">
+						<div class="col-md-6 d-flex justify-content-center">
+							<h5 class="mb-2 pb-md-0">Or</h5>
+						</div>
+					</div>
+
+					<div class="row d-flex justify-content-center">
+						<div class="col-md-3 mb-1">
+							<div class="form-outline"></div>
+						</div>
+						<div class="col-md-4 mb-1">
+							<div class="form-outline">
+								<input class="form-control me-2" type="search" name="bname" placeholder="Search By Business Name">
+							</div>
+						</div>
+						<div class="col-md-5 d-flex justify-content-start mb-2">
+							<div class="form-outline">
+								<button class="btn user-btns ms-2" type="submit" name="sub" value="Buss">Search</button>
+							</div>
+						</div>
+					</div>
+
+					<div class="row d-flex justify-content-center">
+						<div class="col-md-6 d-flex justify-content-center">
+							<h5 class="mb-2 pb-md-0">Or</h5>
+						</div>
+					</div>
+
+					<div class="row d-flex justify-content-center">
+						<div class="col-md-3 mb-1">
+							  <div class="form-outline"></div>
+						</div>
+						<div class="col-md-4 mb-1">
+							  <div class="form-outline">
+								<input class="form-control me-2" type="search" name="bplace" placeholder="Search by place" aria-label="Search">
+							  </div>
+						</div>
+						<div class="col-md-5 d-flex justify-content-start mb-2">
+							  <div class="form-outline">
+								  <button class="btn user-btns ms-2" type="submit" name="sub" value="Bplace">Search</button>
+							  </div>
+						</div>
+					</div>
+
+					<div class="row d-flex justify-content-center">
+						<div class="col-md-6 d-flex justify-content-center">
+							<h5 class="mb-2 pb-md-0">Or</h5>
+						</div>
+					</div>
+
+					<div class="row d-flex justify-content-center">
+						<div class="col-md-6 mb-4 pb-2">
+							<div class="form-outline">
+								<select class="form-control form-control-md" id="btype" name="btype">
+									<option value="">Business Field</option>
+									<option value="Furniture">Furniture</option>
+									<option value="Sanitary">Sanitary</option>
+									<option value="Paint">Paint</option>
+									<option value="Plumbing">Plumbing</option>
+								</select>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="d-flex justify-content-center">
+							<div class="form-outline">
+								<button class="btn user-btns" type="submit" name="sub" value="Btype">Find</button>
+							</div>
+						</div>
+					</div>
+				</form>
+            </div>
+      </div>
+    </div>
+</div>
+
+<script>
+function openTab(tabName) {
+    var i, tabContent;
+
+    // Hide all tab content
+    tabContent = document.getElementsByClassName("tab-content");
+    for (i = 0; i < tabContent.length; i++) {
+        tabContent[i].style.display = "none";
+    }
+
+    // Deactivate all tabs
+    tabs = document.getElementsByClassName("tab");
+    for (i = 0; i < tabs.length; i++) {
+        tabs[i].className = tabs[i].className.replace(" active", "");
+    }
+
+    // Show the selected tab content
+    document.getElementById(tabName + "-content").style.display = "block";
+
+    // Activate the clicked tab
+    event.currentTarget.className += " active";
+}
+
+// Initially open the first tab
+openTab("tab1");
+</script>
+
+{% endblock %}

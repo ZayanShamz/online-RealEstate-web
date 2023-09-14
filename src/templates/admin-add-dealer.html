@@ -1,0 +1,59 @@
+{% extends "design.html" %}
+
+{% block title%} Add Dealer {% endblock %}
+
+{% block body %}
+
+
+
+<div class="d-flex justify-content-center m-5">
+    <div class="col-md-5 p-5" id="login-box">
+            <form action="/addDealer" method="post" enctype="multipart/form-data">
+                <h2 class="d-flex justify-content-center" style="color:#F45B69;cursor:default;">Add Dealer</h2>
+
+                <div class="mx-2 mt-4">
+                    <input type="text" name="dealerName" class="inputs form-control" placeholder="Name">
+                </div>
+                <div class="form-group mx-2 my-3">
+                    <input type="text" name="dealerEmail" class="inputs form-control" placeholder="Email">
+                </div>
+                <div class="form-group mx-2 my-3">
+                    <input type="text" name="dealerPhone" class="inputs form-control" placeholder="Phone Number ">
+                </div>
+                <div class="inputs form-group mx-2 my-3">
+                    <div class="col-md">
+                      <h6 class="mb-2 pb-1">Gender: </h6>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="gender" id="femaleGender"
+                          value="female"/>
+                        <label class="form-check-label" for="femaleGender">Female</label>
+                      </div>
+
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="gender" id="maleGender"
+                          value="male" />
+                        <label class="form-check-label" for="maleGender">Male</label>
+                      </div>
+
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="gender" id="otherGender"
+                          value="other" />
+                        <label class="form-check-label" for="otherGender">Other</label>
+                      </div>
+                    </div>
+                </div>
+                <div class="form-group mx-2 my-3">
+                    <input type="date" name="dealerDob" class="inputs form-control" placeholder="DOB">
+                </div>
+                <div class="form-group mx-2 my-3">
+                    <input type="text" name="dealerPassword" class="inputs form-control" placeholder="password">
+                </div>
+                <div class="form-group d-flex justify-content-center mx-2 mt-3">
+                    <button type="submit" id="login-btn" class="btn btn-warning btn-block" value="dealer">SUBMIT</button>
+                </div>
+            </form>
+    </div>
+</div>
+
+
+{% endblock %}

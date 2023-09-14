@@ -1,0 +1,113 @@
+{% extends "design-user.html" %}
+{% block title%} Find a plot @RealTor {% endblock %}
+
+
+
+{% block body %}
+<div class="container py-4 h-100">
+	<div class="row justify-content-center align-items-center h-100">
+	  <div class="col-12 col-lg-9 col-xl-7">
+		<div class="card shadow-2-strong" style="border-radius: 15px;">
+		  <div class="card-body p-4 p-md-3">
+			<div class="d-flex justify-content-center">
+			  <h3 class="mb-4 pb-2 pb-md-0 mb-md-5"></h3>
+			</div>
+			<form action="/" method="post" role="search">
+				<div class="row d-flex justify-content-center">
+					<div class="col-md-3 mb-1">
+						<div class="row d-flex justify-content-center">
+							<div class="col-md-3 mb-1">
+								  <div class="form-outline"></div>
+							</div>
+							<div class="col-md-4 mb-1">
+								  <div class="form-outline">
+									<input class="form-control me-2" type="search" name="cname" placeholder="Search by place" aria-label="Search">
+								  </div>
+							</div>
+							<div class="col-md-5 d-flex justify-content-start mb-2">
+								  <div class="form-outline">
+									  <button class="btn btn-outline-warning ms-2" type="submit" name="sub" value="srch1">Search</button>
+								  </div>
+							</div>
+						</div>
+
+						<div class="row d-flex justify-content-center">
+							<div class="col-md-6 d-flex justify-content-center">
+								<h4 class="mb-2 pb-md-0">Or</h4>
+							</div>
+						</div>
+						<div class="row d-flex justify-content-center">
+							<div class="col-md-6 mb-4 pb-2">
+								<div class="form-outline">
+									<select class="form-control form-control-md" name="storey">
+										<option value="">Select Pot Type</option>
+										<option value="sssr">Single Storey Single Room</option>
+										<option value="ssmr">Single Storey Multi Rooms</option>
+										<option value="mssr">Multi Storey Single Rooms</option>
+										<option value="msmr">Multi Storey Multi Rooms</option>
+									</select>
+								</div>
+							</div>
+						</div>
+
+						<div class="row d-flex justify-content-center">
+							<div class="col-md-6 mb-4 pb-2">
+								<div class="form-outline">
+									<select class="form-control form-control-md" name="price">
+										<option value="">Choose rent (in rupees)</option>
+										<option value="100000">~25,000</option>
+										<option value="25000 AND 50000">25,000 &emsp; - &emsp;50,000</option>
+										<option value="50000 AND 100000">50,000 &emsp; - &emsp;1,00,000</option>
+										<option value="100000 AND 200000">1 lakh &emsp; - &emsp;2 lakhs</option>
+										<option value="200000 AND 500000">2 lakhs &emsp; - &emsp;5 lakhs</option>
+										<option value="500000 AND 700000">5 lakhs &emsp; - &emsp;7 lakhs</option>
+										<option value="700000 AND 200000">7 lakhs &emsp; - &emsp;15 lakhs</option>
+										<option value="1500000 AND 2500000">15 lakhs&emsp;- &emsp;25 lakhs</option>
+										<option value="2500000 AND 3500000">25 lakhs&emsp;- &emsp;35 lakhs</option>
+										<option value="3500000 AND 5000000">35 lakhs&emsp;- &emsp;50 lakhs</option>
+										<option value="5000000 AND 7500000">50 lakhs&emsp;- &emsp;75 lakhs</option>
+										<option value="7500000 AND 10000000">75 lakhs&emsp;- &emsp; 1 crore</option>
+										<option value="10000000 AND 30000000">1 crore &emsp;- &emsp;3 crores</option>
+										<option value="30000000"> >3 crores</option>
+									</select>
+								</div>
+							</div>
+						</div>
+
+						<div class="row d-flex justify-content-center">
+							<div class="col-md-6 mb-3 pb-2">
+								  <div class="form-outline">
+									  <select class="form-control form-control-md" name="area">
+										  <option value="">Select Area (in sqrft)</option>
+										  <option value="1000">< 1000</option>
+										  <option value="1000 AND 3000">1000 - 3000</option>
+										  <option value="3000 AND 5000">3000 - 5000</option>
+										  <option value="5000 AND 10000">5000 - 10,000</option>
+										  <option value="10000 AND 15000">10,000 - 15,000</option>
+										  <option value="15000 AND 25000">15,000 - 25,000</option>
+										  <option value="25000 AND 35000">25,000 - 35,000</option>
+										  <option value="35000 AND 50000">35,000 - 50,000</option>
+										  <option value="50000">> 50,000</option>
+									  </select>
+								  </div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="d-flex justify-content-center">
+								<div class="form-outline">
+									<button class="btn btn-outline-warning" type="submit" name="sub" value="srch2">Find plot</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				</form>
+		  </div>
+		</div>
+	  </div>
+	</div>
+</div>
+
+{% endblock %}

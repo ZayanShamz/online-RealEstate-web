@@ -1,0 +1,46 @@
+{% extends "design.html" %}
+
+{% block title%} Merchants @RealEstate {% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="main-body d-flex justify-content-center">
+		<div class="col-md-7 my-3">
+		  <div class="card mt-3">
+			 <div class="card-body">
+              <div class="table-responsive">
+                  <table class="table" align="center">
+                    <thead>
+                      <tr>
+                        <th scope="col">Merchant</th>
+                        <th scope="col">Business Name</th>
+                        <th scope="col">Business Type</th>
+                        <th scope="col">Contact</th>
+                        <th scope="col" ></th>
+
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for i in res %}
+                      <tr  class="clickable" onclick="window.location='/viewMerchant/{{ i[0] }}'">
+                        <td>{{ i[0] }} - {{ i[1] }}</td>
+                        <td>{{ i[5] }}<br>
+                            <span class="loc d-block text-black-50" title="{{ i[7] }}">{{ i[7] }}</span>
+                        </td>
+                        <td>{{ i[6] }}</td>
+                        <td>Phone : {{ i[4] }} <br>
+                            Email : {{ i[3] }}</td>
+                        <td valign="center"><a class="btn btn-danger btn-md" href="/deleteMerch/{{ i[0] }}">Remove</a></td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+             </div>
+          </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends "design-user.html" %}
+
+{% block title%} Merchants @Realtor {% endblock %}
+
+
+{% block body %}
+<div class="container-fluid">
+    <div class="main-body d-flex justify-content-center">
+		<div class="col-md-6 my-3">
+		  <div class="card mt-3">
+			 <div class="card-body">
+                  <div class="col justify-content-center">
+                     <button class="btn btn-secondary" onclick="window.location='/userSearchEng'">Back</button>
+                 </div>
+                 {% if res %}
+                 <div class="table-responsive">
+                  <table class="table" align="center">
+                    <thead>
+                      <tr>
+                        <th scope="col">Merchant</th>
+                        <th scope="col">Business Name</th>
+                        <th scope="col">Business Type</th>
+                        <th scope="col">Contact</th>
+
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for i in res %}
+                      <tr  class="clickable" onclick="window.location='#'">
+                        <td>{{ i[0] }} - {{ i[1] }}</td>
+                        <td>{{ i[5] }}<br>
+                            <span class="loc d-block text-black-50" title="{{ i[7] }}">{{ i[7] }}</span>
+                        </td>
+                        <td>{{ i[6] }}</td>
+                        <td>Phone : {{ i[4] }} <br>
+                            Email : {{ i[3] }}</td>
+                        </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+                 {% else %}
+                 <div class="col justify-content-center">
+                     <h3 align="center">No Result</h3>
+                 </div>
+                 {% endif %}
+             </div>
+          </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

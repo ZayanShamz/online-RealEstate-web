@@ -1,0 +1,99 @@
+{% extends "design.html" %}
+
+{% block title%}{{ merch[1] }} @RealEstate{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="main-body d-flex justify-content-center">
+		<div class="col-md-5 my-3">
+		  <div class="card">
+			<div class="card-body">
+			  <div class="d-flex flex-column align-items-center text-center">
+                <div class="container" style="width:70%;">
+                  <img src="/static/images/merchant/{{merch[8]}}" class="d-block w-100" alt="..."
+                  style="width:100%; height:auto;">
+				</div>
+				<div class="mt-3">
+				  <p class="text-dark mb-1">{{ merch[5] }}</p>
+				  <p class="text-muted font-size-sm">{{ merch[6] }}</p>
+				</div>
+			  </div>
+			</div>
+		  </div>
+		  <div class="card mt-3">
+			 <div class="card-body">
+				 <div class="row">
+					 <div class="col-sm-4">
+					  <h6 class="mb-0 ms-4">Merchant</h6>
+					 </div>
+					 <div class="col-sm-8 text-secondary">
+						{{ merch[1] }}
+					 </div>
+				 </div>
+
+				 <hr>
+				 <div class="row">
+					<div class="col-sm-4">
+					  <h6 class="mb-0 ms-4">Age</h6>
+					</div>
+					<div class="col-sm-8 text-secondary">
+						{{ merch[9]|int }}
+					</div>
+				 </div>
+
+				 <hr>
+
+				 <div class="row">
+					<div class="col-sm-4">
+					  <h6 class="mb-0 ms-4">Address</h6>
+					</div>
+					<div class="col-sm-8 text-secondary">
+					  {{ merch[7] }}
+					</div>
+				 </div>
+
+				 <hr>
+
+				 <div class="row">
+					<div class="col-sm-4">
+					  <h6 class="mb-0 ms-4">Phone</h6>
+					</div>
+					<div class="col-sm-8 text-secondary">
+					  {{ merch[4] }}
+					</div>
+				 </div>
+
+				 <hr>
+
+				 <div class="row">
+					<div class="col-sm-4">
+					  <h6 class="mb-0 ms-4">Email</h6>
+					</div>
+					<div class="col-sm-8 te xt-secondary">
+					  <a href="https://mail.google.com/mail/?view=cm&fs=1&to={{ merch[3] }}.com" target="_blank"
+					 title="Open in Gmail" style="text-decoration:none;color:black;">{{ merch[3] }}</a>
+					</div>
+				 </div>
+
+				 <hr>
+
+				 <div class="row ">
+					<div class="col-sm-4 d-flex justify-content-end">
+                       <a href="/viewMerchants" class="btn btn-outline-secondary">Back</a>
+                    </div>
+					<div class="col-sm-4 d-flex justify-content-center">
+					  <a href="/editMerchant/{{ merch[0] }}" class="btn btn-outline-secondary">Edit</a>
+					</div>
+					<div class="col-sm-4">
+					  <a href="/deleteMerchant/{{ merch[0] }}" class="btn btn-outline-danger"
+					  onclick="return confirm('Remove this Merchant?');">Delete</a>
+					</div>
+				 </div>
+			 </div>
+		  </div>
+		</div>
+	</div>
+</div>
+
+
+{% endblock %}

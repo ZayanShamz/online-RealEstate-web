@@ -2,130 +2,94 @@
 {% block title%}Edit Plot{% endblock %}
 {% block body %}
 
-<form action="/editPlot/{{ plot[0] }}" method="post" enctype="multipart/form-data">
-	<input type="hidden" name="plot" value="{{ plot[0] }}">
-        <div class="container my-3">
-            <div class="main-body d-flex justify-content-center">
-                <div class="col-md-6 mb-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row align-items-center pt-2">
-                              <div class="col-md-3">
-                                <h6 class="mb-0">Plot Name</h6>
-                              </div>
-                              <div class="col-md-9 ">
-                                <input type="text" name="pname" id="pname" class="form-control form-control-md" value="{{ plot[2] }}"/>
-                              </div>
-                            </div>
+<div class="container py-4 h-100">
+	<div class="row justify-content-center align-items-center h-100">
+		<div class="col-12 col-xl-6 m-3" id="login-box">
+            <div class="d-flex justify-content-center">
+			  <h3 class="mb-4 pb-2 mt-4" style="color:#F45B69;cursor:default;">Edit Plot Details</h3>
+			</div>
 
-                            <hr class="mx-n3">
+            <form action="/editPlot/{{ plot[0] }}" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="plot" value="{{ plot[0] }}">
+                <div class="row mb-4 px-3">
+                  <div class="col-md-4">
+                    <h6 class="mt-1">Plot Name</h6>
+                  </div>
+                  <div class="col-md-8">
+                    <input type="text" name="pname" id="pname" class="inputs form-control" value="{{ plot[2] }}"/>
+                  </div>
+                </div>
 
-                            <div class="row align-items-center pt-2 mb-3">
-                              <div class="col-md-3">
-                                <h6 class="mb-0">Plot Address</h6>
-                              </div>
-                              <div class="col-md-9 ">
-                                <p>{{ plot[3] }}</p>
-                              </div>
-                            </div>
+                <div class="row px-3 mb-3">
+                  <div class="col-md-4">
+                    <h6 class="mt-1">Current Address</h6>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="text text-secondary">{{ plot[3] }}</div>
+                  </div>
+                </div>
 
-                             <div class="row align-items-center">
-                              <div class="col-md-3">
-                                <a class="btn btn-outline-secondary btn-sm" href="#"
-                                  data-bs-toggle="modal" data-bs-target="#locationModal">Change Location</a>
-                              </div>
-                              <div class="col-md-4 ">
-                                <input type="text" id="lat" name="lat" class="form-control form-control-md" placeholder="Latitude">
-                              </div>
-                              <div class="col-md-4 ">
-                                <input type="text" id="lon" name="lon" class="form-control form-control-md" placeholder="Longitude">
-                              </div>
-                            </div>
+                <div class="row mb-4 px-3">
+                  <div class="col-md-4">
+                      <a class="inputs btn btn-outline-secondary btn-md" href="#" data-bs-toggle="modal"
+                         data-bs-target="#locationModal">Change Address</a>
+                  </div>
+                  <div class="col-md-4">
+                      <input type="text" id="lat" name="lat" class="inputs form-control" placeholder="Latitude">
+                  </div>
+                  <div class="col-md-4">
+                      <input type="text" id="lon" name="lon" class="inputs form-control" placeholder="Longitude">
+                  </div>
+                </div>
 
-                             <hr class="mx-n3">
+                <div class="row mb-4 px-3">
+                  <div class="col-md-6">
+                      <h6>Type :</h6>
+                      <div class="form-outline">
+                          <select class="inputs form-control" id="ptype" name="ptype">
+                            <option value="{{ plot[5] }}">{{ plot[5] }}</option>
+                            <option value="land">Land</option>
+                            <option value="building">Building</option>
+                            <option value="home">Home</option>
+                          </select>
+                      </div>
+                  </div>
+                  <div class="col-6">
+                      <h6>Dealer :</h6>
+                      <div class="form-outline">
+                          <select class="inputs form-control" id="dealer" name="dealer">
+                            <option value="{{ plot[12] }}" selected>{{ plot[13] }}</option>
+                            {% for i in dealer %}
+                            <option value="{{ i[0] }}">{{ i[1] }}</option>
+                            {% endfor %}
+                          </select>
+                      </div>
+                  </div>
+                </div>
 
-                            <div class="row align-items-center">
-                              <div class="col-md-3">
-                                <h6 class="mb-0">Type</h6>
-                              </div>
-                              <div class="col-md-9 ">
-                                <div class="form-outline">
-                                  <select class="form-control form-control-md" id="ptype" name="ptype">
-                                        <option value="{{ plot[5] }}">{{ plot[5] }}</option>
-                                        <option value="land">Land</option>
-                                        <option value="building">Building</option>
-                                        <option value="home">Home</option>
-                                  </select>
-                                </div>
-                              </div>
-                            </div>
-
-                            <hr class="mx-n3">
-
-                            <div class="row align-items-center">
-                              <div class="col-md-3">
-                                <h6 class="mb-0">Plot Area</h6>
-                              </div>
-                              <div class="col-md-9 ">
-                                <input type="text" id="area" name="area" class="form-control form-control-md" value="{{ plot[4] }}"/>
-                              </div>
-                            </div>
-
-                            <hr class="mx-n3">
-
-                            <div class="row align-items-center">
-                              <div class="col-md-3">
-                                <h6 class="mb-0">Plot Price</h6>
-                              </div>
-                              <div class="col-md-9 ">
-                                <input type="text" id="price" name="price" class="form-control form-control-md" value="{{ plot[6] }}"/>
-                              </div>
-                            </div>
-
-                            <hr class="mx-n3">
-
-                            <div class="row align-items-center">
-                              <div class="col-md-3">
-                                <h6 class="mb-0">Dealer</h6>
-                              </div>
-                              <div class="col-md-9 ">
-                                <div class="form-outline">
-                                    <select class="form-control form-control-md" id="dealer" name="dealer">
-                                        <option value="{{ plot[12] }}" selected>{{ plot[13] }}</option>
-                                        {% for i in dealer %}
-                                        <option value="{{ i[0] }}">{{ i[1] }}</option>
-                                        {% endfor %}
-                                    </select>
-                                </div>
-                              </div>
-                            </div>
-
-                            <hr class="mx-n3">
-
-                            <div class="row align-items-center mb-3">
-                              <div class="col-md-3">
-                                <h6 class="mb-0">Add Photos</h6>
-                              </div>
-
-                              <div class="col-md-9">
-                                <input type="file" name="files" class="form-control form-control-md" multiple>
-                              </div>
-                            </div>
-
-                            <div class="row py-3">
-                                <div class="col-sm-6 d-flex justify-content-center">
-                                  <a href="/viewPlot/{{ plot[0] }}" class="btn btn-outline-secondary">Back</a>
-                                </div>
-                                <div class="col-sm-6 d-flex justify-content-center">
-                                    <button type="submit" class="btn btn-outline-danger">UPDATE</button>
-                                </div>
-                            </div>
-                        </div>
+                <div class="row mb-5 px-3">
+                    <div class="col-md-6">
+                        <h6>Plot Area :</h6>
+                        <input type="text" id="area" name="area" class="inputs form-control" value="{{ plot[4] }}"/>
+                    </div>
+                    <div class="col-md-6">
+                        <h6>Price :</h6>
+                        <input type="text" id="price" name="price" class="inputs form-control" value="{{ plot[6] }}"/>
                     </div>
                 </div>
-            </div>
+
+                <div class="row mb-5 px-3">
+                    <div class="col-md-6 d-flex justify-content-end">
+                        <div onclick="goBack()" class="btn btn-outline-secondary">Back</div>
+                    </div>
+                    <div class="col-md-6 d-flex justify-content-start">
+                        <button type="submit" id="login-btn" class="btn btn-outline-danger">UPDATE</button>
+                    </div>
+                </div>
+            </form>
         </div>
-</form>
+    </div>
+</div>
 
 <!-- ------------------------LOCATION MODAL-------------------- -->
 

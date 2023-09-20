@@ -4,6 +4,100 @@
 
 {% block body %}
 
+<div class="container py-4 h-100">
+	<div class="row justify-content-center align-items-center h-100">
+		<div class="col-12 col-xl-6 m-3" id="login-box">
+            <div class="d-flex justify-content-center">
+			  <h3 class="mb-4 pb-2 mt-4" style="color:#F45B69;cursor:default;">Edit Merchant Details</h3>
+			</div>
+
+            <form action="/editMerchant/{{ merch[0] }}" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="merch" value="{{ merch[0] }}">
+                <div class="row my-3 px-3">
+					<div class="col-md-6">
+						<h6 class="mt-1">Name :</h6>
+						<input type="text" name="ename" id="ename" class="inputs form-control" value="{{ merch[1] }}"/>
+					</div>
+					<div class="col-md-6">
+						<h6>DOB :</h6>
+						<input type="date" name="dob" id="dob" class="form-control inputs"  value="{{ merch[2] }}">
+					</div>
+                </div>
+
+				<div class="row my-3 px-3">
+					<div class="col-md-6">
+					</div>
+
+				</div>
+
+				<div class="row my-3 px-3">
+                    <div class="col-md-6">
+                        <h6>Phone : </h6>
+						<input type="text" id="phone" name="phone" class="form-control form-control-md" value="{{ merch[5] }}"/>
+                    </div>
+                    <div class="col-md-6">
+                        <h6>Email :</h6>
+                        <input type="text" id="email" name="email" class="form-control inputs" value="{{ merch[3] }}"/>
+                    </div>
+                </div>
+
+                <div class="row my-3 px-3">
+                  <div class="col-md-6">
+                      <h6>Business Name :</h6>
+					  <input type="text" id="bname" name="bname" class="form-control inputs" value="{{ merch[5] }}"/>
+                  </div>
+                  <div class="col-6">
+                      <h6>Business Type :</h6>
+						<select class="form-control form-control-md" id="btype" name="btype">
+							<option value="{{ merch[6] }}">Select </option>
+							<option value="Furniture">Furniture</option>
+							<option value="Sanitary">Sanitary</option>
+							<option value="Paint">Paint</option>
+							<option value="Plumbing">Plumbing</option>
+						</select>
+                  </div>
+                </div>
+
+				<div class="row px-3 my-3">
+					<div class="col-md-6">
+                        <div class="row my-3">
+							<div class="col-md-12 ">
+                                <b>Current Location :</b><span class="text text-secondary"> {{ merch[7] }}</span>
+								<input type="hidden" name="loc" value="{{ merch[7] }}">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md d-flex justify-content-center">
+								<a class="btn btn-outline-secondary btn-sm" href="#"
+								   data-bs-toggle="modal" data-bs-target="#locationModal">Change Location</a>
+                                <input type="hidden" name="lat" id="lat">
+                                <input type="hidden" name="lon" id="lon">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 mt-3">
+						<label for="fileInput" class="custom-file-upload">
+							Change Photo
+						</label>
+						<input type="file" id="fileInput" name="files" style="display: none;">
+						<div id="selectedFileName">No file selected</div>
+						<input type="hidden" name="fname" value="{{ merch[8] }}">
+					</div>
+				</div>
+
+                <div class="row mb-5 px-3">
+                    <div class="col-md-6 d-flex justify-content-end">
+                        <div onclick="goBack()" class="btn btn-outline-secondary">Back</div>
+                    </div>
+                    <div class="col-md-6 d-flex justify-content-start">
+                        <button type="submit" id="login-btn" class="btn btn-outline-danger">UPDATE</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 
 <div class="container py-4 h-100">
 	<div class="row justify-content-center align-items-center h-100">
@@ -14,7 +108,7 @@
 			  <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Edit Merchant</h3>
 			</div>
 
-			<form action="/editMerchant/{{merch[0]}}" method="post" enctype="multipart/form-data">
+			<form action="//{{merch[0]}}" method="post" enctype="multipart/form-data">
 
 				<div class="row px-3 mb-4">
 					<div class="col-md-6">
@@ -47,17 +141,10 @@
 				<div class="row px-3">
 					<div class="col-md-6">
 						<label>Business Name</label>
-						<input type="text" id="bname" name="bname" class="form-control form-control-md" value="{{ merch[5] }}"/>
+
 					</div>
 					<div class="col-md-6">
-						<label>Business Type</label>
-						<select class="form-control form-control-md" id="btype" name="btype">
-							<option value="{{ merch[6] }}">Select </option>
-							<option value="Furniture">Furniture</option>
-							<option value="Sanitary">Sanitary</option>
-							<option value="Paint">Paint</option>
-							<option value="Plumbing">Plumbing</option>
-						</select>
+
 					</div>
 				</div>
 

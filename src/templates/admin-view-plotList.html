@@ -5,50 +5,66 @@
 {% block body %}
 <div class="container-fluid">
     <div class="main-body d-flex justify-content-center">
-		<div class="col-md-6 my-3">
-		  <div class="card mt-3">
-			 <div class="card-body">
-                 <h3 class="my-3" align="center">PLOTS</h3>
-                 {% for i in plots %}
-                 <div class="container" id="login-box">
-                     <div class="p-3" onclick="window.location='/viewPlot/{{ i[0] }}'">
-                         <div class="row px-3 mb-2">
-                             <div class="col-md-8">
-                                 {{ i[0] }} - <b>{{ i[2] }}</b>
-                             </div>
-                             <div class="col-md-4">
-                                    Status : {{ i[10] }}
-                             </div>
+		<div class="col-md-6">
+            <div class="row px-3 mt-3">
+                <div class="col-9">
+                    <form action="/viewPlotList" method="post" class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" name="dname"
+                               placeholder="Enter Plot name or Dealer name..." aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
+                <div class="col-3 d-flex justify-content-center">
+                    <div onclick="window.location='/adminHome'" class="btn btn-outline-secondary">Back</div>
+                </div>
+            </div>
+
+            <hr>
+             {% if plots %}
+            <h3 class="my-3" align="center">RealEstate Plots</h3>
+             {% for i in plots %}
+             <div class="container my-3" id="login-box">
+                 <div class="p-3" onclick="window.location='/viewPlot/{{ i[0] }}'">
+                     <div class="row px-3 mb-2">
+                         <div class="col-md-8">
+                             {{ i[0] }} - <b>{{ i[2] }}</b>
                          </div>
-                         <div class="row px-3 mb-2">
-                             <div class="col-md-8">
-                                 Owner : <b>{{ i[15] }}</b>
-                             </div>
-                             <div class="col-md-4">
-                                 Type : <span class="text text-secondary">{{ i[5] }}</span>
-                             </div>
+                         <div class="col-md-4">
+                                Status : {{ i[10] }}
                          </div>
-                         <div class="row px-3 mb-2">
-                             <div class="col-md-8">
-                                 Price : <span class="text text-secondary">Rs. {{ i[6] }}</span>
-                             </div>
-                             <div class="col-md-4">
-                                 Area : <span class="text text-secondary">{{ i[4] }} sqrft</span>
-                             </div>
+                     </div>
+                     <div class="row px-3 mb-2">
+                         <div class="col-md-8">
+                             Owner : <b>{{ i[15] }}</b>
                          </div>
-                         <div class="row px-3 mb-1">
-                             <div class="col-md-7">
-                                 Address : <span class="text text-secondary" title="{{ i[3] }}">{{ i[13] }}, {{ i[14] }}</span>
-                             </div>
-                             <div class="col-5 d-flex justify-content-center">
-                                 <a class="btn btn-danger btn-sm" href="/deletePlot/{{ i[0] }}">Remove</a>
-                             </div>
+                         <div class="col-md-4">
+                             Type : <span class="text text-secondary">{{ i[5] }}</span>
+                         </div>
+                     </div>
+                     <div class="row px-3 mb-2">
+                         <div class="col-md-8">
+                             Price : <span class="text text-secondary">Rs. {{ i[6] }}</span>
+                         </div>
+                         <div class="col-md-4">
+                             Area : <span class="text text-secondary">{{ i[4] }} sqrft</span>
+                         </div>
+                     </div>
+                     <div class="row px-3 mb-1">
+                         <div class="col-md-7">
+                             Address : <span class="text text-secondary" title="{{ i[3] }}">{{ i[13] }}, {{ i[14] }}</span>
+                         </div>
+                         <div class="col-5 d-flex justify-content-center">
+                             <a class="btn btn-danger btn-sm" href="/deletePlot/{{ i[0] }}">Remove</a>
                          </div>
                      </div>
                  </div>
-                 {% endfor %}
              </div>
-          </div>
+             {% endfor %}
+            {% else %}
+            <h4 class="text text-secondary my-3" align="center">No Plots Found</h4>
+            <h5 class="text my-3" align="center" onclick="window.location='/addDealer'"
+                style="cursor:pointer;color:#F45B69">Add Dealer</h5>
+            {% endif %}
         </div>
     </div>
 </div>

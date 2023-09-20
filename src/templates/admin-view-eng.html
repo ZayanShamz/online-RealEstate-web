@@ -8,79 +8,93 @@
 		<div class="col-md-5 my-3">
 		  <div class="card">
 			<div class="card-body">
-			  <div class="d-flex flex-column align-items-center text-center">
-                <div class="container" style="width:70%;">
-                  <img src="/static/images/engineers/{{eng[9]}}" class="d-block w-100" alt="..."
-                  style="width:100%; height:auto;">
-
-                  </div>
-				<div class="mt-3">
-				  <p class="text-dark mb-1">{{ eng[1] }}</p>
-				  <p class="text-muted font-size-sm">{{ eng[3] }}</p>
+				<div class="d-flex flex-column align-items-center text-center">
+					<div class="container" style="width:80%;">
+						<img src="/static/images/engineers/{{eng[9]}}" class="d-block w-100" alt="..."
+							 style="width:100%; height:auto;">
+					</div>
+					<div class="my-3">
+						<p class="text-dark my-1">{{ eng[1] }}</p>
+						<p class="text-muted font-size-sm">{{ eng[3] }}</p>
+					</div>
 				</div>
-			  </div>
-			</div>
-		  </div>
-		  <div class="card mt-3">
-			 <div class="card-body">
-				  <div class="row">
-					<div class="col-sm-4">
-					  <h6 class="mb-0 ms-4">Age</h6>
+
+				<div class="row px-3 my-3">
+					<div class="col-sm-3">
+					  <h6>Age</h6>
+					</div>
+					<div class="col-sm-1">
+					  <h6>:</h6>
 					</div>
 					<div class="col-sm-8 text-secondary">
 						{{ eng[10]|int }}
 					</div>
-				  </div>
+				</div>
 
-				  <hr>
-
-				  <div class="row">
-					<div class="col-sm-4">
-					  <h6 class="mb-0 ms-4">Gender</h6>
+				<div class="row px-3 my-3">
+					<div class="col-sm-3">
+					  <h6>Gender</h6>
+					</div>
+					<div class="col-sm-1">
+					  <h6>:</h6>
 					</div>
 					<div class="col-sm-8 text-secondary">
 						{{ eng[6] }}
 					</div>
-				  </div>
-				  <hr>
-				  <div class="row">
-					<div class="col-sm-4">
-					  <h6 class="mb-0 ms-4">Address</h6>
+				</div>
+
+				<div class="row px-3 my-3">
+					<div class="col-sm-3">
+					  <h6>Address</h6>
+					</div>
+					<div class="col-sm-1">
+					  <h6>:</h6>
 					</div>
 					<div class="col-sm-8 text-secondary">
 					  {{ eng[8] }}
 					</div>
-				  </div>
-				  <hr>
-				  <div class="row">
-					<div class="col-sm-4">
-					  <h6 class="mb-0 ms-4">Experience</h6>
+				</div>
+
+				<div class="row px-3 my-3">
+					<div class="col-sm-3">
+					  <h6>Experience</h6>
+					</div>
+					<div class="col-sm-1">
+					  <h6>:</h6>
 					</div>
 					<div class="col-sm-8 text-secondary">
 					  {{ eng[2] }} Years
 					</div>
-				  </div>
-				  <hr>
-				  <div class="row">
-					<div class="col-sm-4">
-					  <h6 class="mb-0 ms-4">Phone</h6>
+				</div>
+
+				<div class="row px-3 my-3">
+					<div class="col-sm-3">
+					  <h6>Phone</h6>
+					</div>
+					<div class="col-sm-1">
+					  <h6>:</h6>
 					</div>
 					<div class="col-sm-8 text-secondary">
 					  {{ eng[5] }}
 					</div>
-				  </div>
-				  <hr>
-				  <div class="row">
-					<div class="col-sm-4">
-					  <h6 class="mb-0 ms-4">Email</h6>
+				</div>
+
+				<div class="row px-3 my-3">
+					<div class="col-sm-3">
+					  <h6>Email</h6>
 					</div>
-					<div class="col-sm-8 te xt-secondary">
+					<div class="col-sm-1">
+					  <h6>:</h6>
+					</div>
+					<div class="col-sm-8">
 					  <a href="https://mail.google.com/mail/?view=cm&fs=1&to={{ eng[4] }}.com" target="_blank"
 					 title="Open in Gmail" style="text-decoration:none;color:black;">{{ eng[4] }}</a>
 					</div>
-				  </div>
-				  <hr>
-				  <div class="row ">
+				</div>
+
+				<hr>
+
+				<div class="row px-3 my-3">
 					<div class="col-sm-4 d-flex justify-content-end">
                        <a href="/viewEngineers" class="btn btn-outline-secondary">Back</a>
                     </div>

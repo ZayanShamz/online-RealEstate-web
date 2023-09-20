@@ -5,41 +5,67 @@
 {% block body %}
 <div class="container-fluid">
     <div class="main-body d-flex justify-content-center">
-		<div class="col-md-7 my-3">
-		  <div class="card mt-3">
-			 <div class="card-body">
-              <div class="table-responsive">
-                  <table class="table" align="center">
-                    <thead>
-                      <tr>
-                        <th>Rental Details</th>
-                        <th>Storey/Rooms</th>
-                        <th>Rent</th>
-                        <th>County</th>
-                        <th></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {% for i in rentals %}
-                      <tr  class="listHover clickable" onclick="window.location='/viewRental/{{ i[0] }}'">
-                          <td><strong>{{ i[0] }} - {{ i[2] }}</strong> <br>
-                              <span class="loc d-block text-black-50" title="{{ i[3] }}">{{ i[3] }}</span>
-                              <small>Owner/Dealer : <strong>{{ i[15] }}</strong></small>
-                          </td>
-                        <td>{{ i[6] }}</td>
-                        <td>Rs {{ i[5] }}</td>
-                        <td>{{ i[14] }}, {{ i[13] }}</td>
-                        <td valign="center"><a class="btn btn-danger btn-md" href="/deleteRental/{{ i[0] }}">Remove</a></td>
-                      </tr>
-                      {% endfor %}
-                    </tbody>
-                  </table>
+		<div class="col-md-6">
+            <div class="row px-3 mt-3">
+                <div class="col-9">
+                    <form action="/viewRentalList" method="post" class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" name="dname"
+                               placeholder="Enter Rental name or Dealer name..." aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
                 </div>
+                <div class="col-3 d-flex justify-content-center">
+                    <div onclick="window.location='/adminHome'" class="btn btn-outline-secondary">Back</div>
+                </div>
+            </div>
+
+            <hr>
+             {% if rentals %}
+            <h3 class="my-3" align="center">RealEstate Rentals</h3>
+             {% for i in rentals %}
+             <div class="container my-3" id="login-box">
+                 <div class="p-3" onclick="window.location='/viewRental/{{ i[0] }}'" style="cursor:pointer;">
+                     <div class="row px-3 mb-2">
+                         <div class="col-md-8">
+                             {{ i[0] }} - <b>{{ i[2] }}</b>
+                         </div>
+                         <div class="col-md-4">
+                                Status : {{ i[10] }}
+                         </div>
+                     </div>
+                     <div class="row px-3 mb-2">
+                         <div class="col-md-8">
+                             Owner : <b>{{ i[15] }}</b>
+                         </div>
+                         <div class="col-md-4">
+                             Rent : <span class="text text-secondary">Rs. {{ i[5] }}</span>
+                         </div>
+                     </div>
+                     <div class="row px-3 mb-2">
+                         <div class="col-md-8">
+                             Type : <span class="text text-secondary">{{ i[6] }}</span>
+                         </div>
+                         <div class="col-md-4">
+                             Area : <span class="text text-secondary">{{ i[4] }} sqrft</span>
+                         </div>
+                     </div>
+                     <div class="row px-3 mb-1">
+                         <div class="col-md-7">
+                             Address : <span class="text text-secondary" title="{{ i[3] }}">{{ i[13] }}, {{ i[14] }}</span>
+                         </div>
+                         <div class="col-5 d-flex justify-content-center">
+                             <a class="btn btn-danger btn-sm" href="/deleteRental/{{ i[0] }}">Remove</a>
+                         </div>
+                     </div>
+                 </div>
              </div>
-          </div>
+             {% endfor %}
+            {% else %}
+            <h4 class="text text-secondary my-3" align="center">No Rentals Found</h4>
+            <h5 class="text my-3" align="center" onclick="window.location='/addDealer'"
+                style="cursor:pointer;color:#F45B69">Add Dealer</h5>
+            {% endif %}
         </div>
     </div>
 </div>
-
-
 {% endblock %}

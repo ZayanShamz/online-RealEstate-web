@@ -4,7 +4,22 @@
 
 {% block body %}
 <div class="container mt-3" style="width:50%;">
-{% for i in dealers %}
+    <div class="row px-3 my-3">
+        <div class="col-9">
+            <form action="/viewDealerList" method="post" class="d-flex" role="search">
+                <input class="form-control me-2" type="search" name="dname"
+                       placeholder="Enter Dealer name..." aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+        <div class="col-3 d-flex justify-content-center">
+            <div onclick="window.location='/adminHome'" class="btn btn-outline-secondary">Back</div>
+        </div>
+    </div>
+    <hr>
+    {% if dealers %}
+    <h3 class="my-3" align="center">RealEstate Dealers</h3>
+    {% for i in dealers %}
     <div class="col-sm-12" onclick="window.location='/viewDealer/{{ i[1] }}'" id="login-box">
       <div class="p-3" style="cursor:pointer;">
           <div class="row">
@@ -27,7 +42,12 @@
           </div>
       </div>
     </div>
+    {% endfor %}
+    {% else %}
+    <h4 class="text text-secondary my-3" align="center">No Dealers Found</h4>
+    <h5 class="text my-3" align="center" onclick="window.location='/addDealer'"
+        style="cursor:pointer;color:#F45B69">Add Dealer</h5>
+    {% endif %}
     <hr>
-{% endfor %}
 </div>
 {% endblock %}

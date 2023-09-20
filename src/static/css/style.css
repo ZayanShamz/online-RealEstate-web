@@ -170,7 +170,7 @@
     text-align: center;
 }
 
-#usr_cntrols .user-btns{
+#usr_controls .user-btns{
  background-color: #456990;
  border-color: #456990;
  color: #DFDFDF;
@@ -179,4 +179,20 @@
 #usr_cntrols .user-btns:hover{
  background-color: #F45B69;
  border-color: #F45B69;
+}
+
+.custom-file-upload {
+    background-color: #F45B69;
+    color: white;
+    padding: 5px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+}
+.custom-file-upload:hover{
+    background-color: #456990;
+}
+
+#selectedFileName {
+    margin-top: 10px;
 }

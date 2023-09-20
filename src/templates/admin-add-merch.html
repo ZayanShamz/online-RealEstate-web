@@ -12,7 +12,7 @@
 			  <h3 class="mb-4 pb-2 mt-3" style="color:#F45B69;cursor:default;">Add Merchant</h3>
 		  </div>
 		  <form action="/addMerchant" method="post" enctype="multipart/form-data">
-				<div class="row mb-4 px-3">
+			  <div class="row mb-4 px-3">
 					<div class="col-md-6">
 						<div class="form-outline">
 							<input type="text" id="mname" name="mname" class="inputs form-control" placeholder="Name"/>
@@ -23,9 +23,9 @@
 						  <input type="date" name="dob" id="dob" class="inputs form-control" placeholder="DOB">
 					  </div>
 					</div>
-				</div>
+			  </div>
 
-				<div class="row mb-4 px-3">
+			  <div class="row mb-4 px-3">
 					<div class="col-md-6">
 						<div class="form-outline">
 							<input type="text" id="email" name="email" class="inputs form-control" placeholder="Email"/>
@@ -34,9 +34,9 @@
 					<div class="col-md-6">
 						<input type="text" id="phone" name="phone" class="inputs form-control" placeholder="phone"/>
 					</div>
-				</div>
+			  </div>
 
-				<div class="row mb-4 px-3">
+			  <div class="row mb-4 px-3">
 					<div class="col-md-6">
 						<div class="form-outline">
 							<input type="text" id="bname" name="bname" class="inputs form-control" placeholder="Business Name"/>
@@ -53,34 +53,43 @@
 							</select>
 						</div>
 					</div>
-				</div>
+			  </div>
 
-				<div class="row mb-4 px-3">
-					<div class="col-md-2 d-flex justify-content-center">
-						<a class="btn btn-outline-secondary btn-sm" href="#"
-						   data-bs-toggle="modal" data-bs-target="#locationModal">Select Location</a>
-					</div>
-					<div class="col-md-2 mt-1">
-						 <input type="text" name="lat" id="lat" class="inputs form-control" placeholder="Latitude">
-					</div>
-					<div class="col-md-2 mt-1">
-						<input type="text" name="lon" id="lon" class="inputs form-control" placeholder="Longitude"/>
-					</div>
-					<div class="col-md-6 mt-1">
-						<div class="form-outline">
-							<input type="file" name="files" class="inputs form-control">
+			  <div class="row px-3 my-3">
+					<div class="col-md-6">
+                        <div class="row my-3">
+							<div class="col-md d-flex justify-content-center">
+								<a class="btn btn-outline-secondary btn-sm" href="#"
+								   data-bs-toggle="modal" data-bs-target="#locationModal">Select Location</a>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6 mt-1">
+								 <input type="text" name="lat" id="lat" class="inputs form-control" placeholder="Latitude">
+							</div>
+							<div class="col-md-6 mt-1">
+								<input type="text" name="lon" id="lon" class="inputs form-control" placeholder="Longitude"/>
+							</div>
 						</div>
 					</div>
-				</div>
+					<div class="col-md-6 mt-3">
+						<label for="fileInput" class="custom-file-upload">
+							Select Photo
+						</label>
+						<input type="file" id="fileInput" name="files" style="display: none;">
+						<div id="selectedFileName">No file selected</div>
+					</div>
+			  </div>
 
-				<div class="row mb-4 px-3">
+
+			  <div class="row my-4 px-3">
 					<div class="col-md-6 d-flex justify-content-end">
 					  <div onclick="goBack()" class="btn btn-outline-secondary">Back</div>
 					</div>
 					<div class="col-md-6 d-flex justify-content-start">
 					  <button type="submit" id="login-btn" class="btn btn-warning btn-block">SUBMIT</button>
 					</div>
-				</div>
+			  </div>
 		  </form>
 		</div>
 	</div>

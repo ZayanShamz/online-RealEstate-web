@@ -1,0 +1,64 @@
+{% extends "design.html" %}
+
+{% block title%} Merchants @RealEstate {% endblock %}
+
+{% block body %}
+
+
+<div class="container mt-3" style="width:50%;">
+    <div class="row px-3 my-3">
+        <div class="col-9">
+            <form action="/viewMerchants" method="post" class="d-flex" role="search">
+                <input class="form-control me-2" type="search" name="kword"
+                       placeholder="Enter Merchant Name or business..." aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+        <div class="col-3 d-flex justify-content-center">
+            <div onclick="window.location='/adminHome'" class="btn btn-outline-secondary">Back</div>
+        </div>
+    </div>
+    <hr>
+    {% if res %}
+    <h3 class="my-3" align="center">RealEstate Merchants</h3>
+    {% for i in res %}
+    <div class="col-sm-12 my-3" onclick="window.location='/viewMerchant/{{ i[0] }}'" id="login-box">
+      <div class="p-3" style="cursor:pointer;">
+          <div class="row mb-2">
+              <div class="col-5">
+                  <strong>Merch Id : {{ i[0] }} </strong>
+              </div>
+              <div class="col-7">
+                  <strong>Name : <span class="text text-secondary">{{ i[1] }}</span></strong>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-5">
+                  <small>Age : <span class="text text-secondary">{{ i[9]|int }}</span></small>
+                  <br>
+                  <small>Address : <span class="text text-secondary" >{{ i[7] }}</span></small>
+                  <br>
+                  <small>Business Name : <span class="text text-secondary">{{ i[5] }}</span></small>
+              </div>
+              <div class="col-5">
+                  <small>Phone : <span class="text text-secondary">{{ i[4] }}</span></small>
+                  <br>
+                  <small>Email : <span class="text text-secondary">{{ i[3] }}</span></small>
+                  <br>
+                  <small>Business Type : <span class="text text-secondary">{{ i[6] }}</span></small>
+              </div>
+              <div class="col-2">
+                  <a class="btn btn-danger btn-sm" href="/deleteMerch/{{ i[0] }}">Remove</a>
+              </div>
+          </div>
+      </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <h4 class="text text-secondary my-3" align="center">No Merchants Found</h4>
+    <h5 class="text my-3" align="center" onclick="window.location='/addMerchant'"
+        style="cursor:pointer;color:#F45B69">Add Merchants</h5>
+    {% endif %}
+    <hr>
+</div>
+{% endblock %}

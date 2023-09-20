@@ -64,6 +64,17 @@
       function goBack() {
           window.history.back();
       }
+
+    const fileInput = document.getElementById("fileInput");
+    const selectedFileName = document.getElementById("selectedFileName");
+
+    fileInput.addEventListener("change", function () {
+        if (fileInput.files.length > 0) {
+            selectedFileName.textContent = fileInput.files[0].name;
+        } else {
+            selectedFileName.textContent = "No file selected";
+        }
+    });
     </script>
 
  <!-- Import jquery cdn -->

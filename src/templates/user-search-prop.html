@@ -3,243 +3,199 @@
 
 {% block body %}
 <div class="container py-4 h-100">
-	<div class="row justify-content-center align-items-center h-100" id="usr_cntrols">
-	  <div class="col-12 col-lg-9 col-xl-7">
+	<div class="row justify-content-center align-items-center h-100" id="usr_controls">
+		<div class="col-12 col-lg-9 col-xl-7">
             <div class="tabs-container">
-                <button class="tab active" onclick="openTab('tab1')">Plots</button>
+				<button class="tab active" onclick="openTab('tab1')">Plots</button>
                 <button class="tab" onclick="openTab('tab2')">Rentals</button>
             </div>
-            <div class="tab-content" id="tab1-content">
-                <h2 class="py-3">Find Plots</h2>
+			<div class="tab-content" id="tab1-content">
+				<h2 class="py-3">Find Plots</h2>
                 <form action="/plotSearch" method="post" role="search">
-							<div class="row d-flex justify-content-center">
-								<div class="col-md-3 mb-1">
-									  <div class="form-outline"></div>
-								</div>
-								<div class="col-md-4 mb-1">
-									  <div class="form-outline">
-										<input class="form-control me-2" type="search" name="pname" placeholder="Enter Plot Name" aria-label="Search">
-									  </div>
-								</div>
-								<div class="col-md-5 d-flex justify-content-start mb-2">
-									  <div class="form-outline">
-										  <button class="btn user-btns ms-2" type="submit" name="sub" value="srch">Search</button>
-									  </div>
+					<div class="row d-flex justify-content-center">
+						<div class="col-md-2 mb-1">
+							<div class="form-outline"></div>
+						</div>
+						<div class="col-md-6 mb-1">
+							<div class="form-outline">
+								<input class="form-control me-2" type="search" name="pname"
+									   placeholder="Enter Plot Name or Place" aria-label="Search">
+							</div>
+						</div>
+						<div class="col-md-4 d-flex justify-content-start mb-2">
+							<div class="form-outline">
+								<button class="btn user-btns ms-2" type="submit" name="sub" value="srch">Search</button>
+							</div>
+						</div>
+					</div>
+
+					<div class="row d-flex justify-content-center">
+						<div class="col-md-6 d-flex justify-content-center">
+							<h4 class="mb-2 pb-md-0">Or</h4>
+						</div>
+					</div>
+
+					<div class="row d-flex justify-content-center">
+						<div class="col-md-6 mb-4 pb-2">
+							<div class="form-outline">
+								<select class="form-control form-control-md" name="type">
+									<option value="">Select Plot Type</option>
+									<option value="land">Land</option>
+									<option value="building">Building</option>
+									<option value="home">Home</option>
+								</select>
+							</div>
+						</div>
+					</div>
+
+					<div class="row d-flex justify-content-center">
+						<div class="col-md-6 mb-4 pb-2">
+							<div class="form-outline">
+								<select class="form-control form-control-md" name="price">
+									<option value="0 AND 999999999">Select price range (in rupees)</option>
+									<option value="0 AND 100000">~1 lakh</option>
+									<option value="100000 AND 200000">1 lakh &emsp; - &emsp;2 lakhs</option>
+									<option value="200000 AND 500000">2 lakhs &emsp; - &emsp;5 lakhs</option>
+									<option value="500000 AND 700000">5 lakhs &emsp; - &emsp;7 lakhs</option>
+									<option value="700000 AND 200000">7 lakhs &emsp; - &emsp;15 lakhs</option>
+									<option value="1500000 AND 2500000">15 lakhs&emsp;- &emsp;25 lakhs</option>
+									<option value="2500000 AND 3500000">25 lakhs&emsp;- &emsp;35 lakhs</option>
+									<option value="3500000 AND 5000000">35 lakhs&emsp;- &emsp;50 lakhs</option>
+									<option value="5000000 AND 7500000">50 lakhs&emsp;- &emsp;75 lakhs</option>
+									<option value="7500000 AND 10000000">75 lakhs&emsp;- &emsp; 1 crore</option>
+									<option value="10000000 AND 30000000">1 crore &emsp;- &emsp;3 crores</option>
+									<option value="30000000 AND 70000000">3 crores &emsp;- &emsp;7 crores</option>
+									<option value="70000000 AND 100000000">7 crores &emsp;- &emsp;10 crores</option>
+									<option value="100000000 AND 150000000">10 crores&emsp;- &emsp;15 crores</option>
+									<option value="150000000 AND 9999999999"> 15 crores</option>
+								</select>
+							</div>
+						</div>
+					</div>
+
+					<div class="row d-flex justify-content-center">
+						<div class="col-md-6 mb-3 pb-2">
+							<div class="form-outline">
+								<select class="form-control form-control-md" name="area">
+									<option value="0 AND 999999999">Select Area (in sqrft)</option>
+									<option value="0 AND 3000">< 3000</option>
+									<option value="3000 AND 5000">3000 - 5000</option>
+									<option value="5000 AND 10000">5000 - 10,000</option>
+									<option value="10000 AND 15000">10,000 - 15,000</option>
+									<option value="15000 AND 25000">15,000 - 25,000</option>
+									<option value="25000 AND 35000">25,000 - 35,000</option>
+									<option value="35000 AND 50000">35,000 - 50,000</option>
+									<option value="50000 AND 99999">> 50,000</option>
+								</select>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div>
+							<div class="d-flex justify-content-center">
+								<div class="form-outline">
+									<button class="btn user-btns" type="submit" name="sub" value="srch2">Find plot</button>
 								</div>
 							</div>
-
-							<div class="row d-flex justify-content-center">
-								<div class="col-md-6 d-flex justify-content-center">
-									<h4 class="mb-2 pb-md-0">Or</h4>
-								</div>
-							</div>
-
-							<div class="row d-flex justify-content-center">
-								<div class="col-md-3 mb-1">
-									  <div class="form-outline"></div>
-								</div>
-								<div class="col-md-4 mb-1">
-									  <div class="form-outline">
-										<input class="form-control me-2" type="search" name="cname" placeholder="Search by place" aria-label="Search">
-									  </div>
-								</div>
-								<div class="col-md-5 d-flex justify-content-start mb-2">
-									  <div class="form-outline">
-										  <button class="btn user-btns ms-2" type="submit" name="sub" value="srch1">Search</button>
-									  </div>
-								</div>
-							</div>
-
-							<div class="row d-flex justify-content-center">
-								<div class="col-md-6 d-flex justify-content-center">
-									<h4 class="mb-2 pb-md-0">Or</h4>
-								</div>
-							</div>
-
-							  <div class="row d-flex justify-content-center">
-								<div class="col-md-6 mb-4 pb-2">
-								  <div class="form-outline">
-									  <select class="form-control form-control-md" name="type">
-										<option value="">Select Plot Type</option>
-										<option value="land">Land</option>
-										<option value="building">Building</option>
-										<option value="home">Home</option>
-									  </select>
-								  </div>
-								</div>
-							  </div>
-
-							  <div class="row d-flex justify-content-center">
-								  <div class="col-md-6 mb-4 pb-2">
-									<div class="form-outline">
-										<select class="form-control form-control-md" name="price">
-											<option value="">Select price range (in rupees)</option>
-											<option value="0 AND 100000">~1 lakh</option>
-											<option value="100000 AND 200000">1 lakh &emsp; - &emsp;2 lakhs</option>
-											<option value="200000 AND 500000">2 lakhs &emsp; - &emsp;5 lakhs</option>
-											<option value="500000 AND 700000">5 lakhs &emsp; - &emsp;7 lakhs</option>
-											<option value="700000 AND 200000">7 lakhs &emsp; - &emsp;15 lakhs</option>
-											<option value="1500000 AND 2500000">15 lakhs&emsp;- &emsp;25 lakhs</option>
-											<option value="2500000 AND 3500000">25 lakhs&emsp;- &emsp;35 lakhs</option>
-											<option value="3500000 AND 5000000">35 lakhs&emsp;- &emsp;50 lakhs</option>
-											<option value="5000000 AND 7500000">50 lakhs&emsp;- &emsp;75 lakhs</option>
-											<option value="7500000 AND 10000000">75 lakhs&emsp;- &emsp; 1 crore</option>
-											<option value="10000000 AND 30000000">1 crore &emsp;- &emsp;3 crores</option>
-											<option value="30000000 AND 70000000">3 crores &emsp;- &emsp;7 crores</option>
-											<option value="70000000 AND 100000000">7 crores &emsp;- &emsp;10 crores</option>
-											<option value="100000000 AND 150000000">10 crores&emsp;- &emsp;15 crores</option>
-											<option value="150000000 AND 9999999999"> 15 crores</option>
-										</select>
-									</div>
-								</div>
-							  </div>
-
-							  <div class="row d-flex justify-content-center">
-								<div class="col-md-6 mb-3 pb-2">
-									  <div class="form-outline">
-										  <select class="form-control form-control-md" name="area">
-											  <option value="">Select Area (in sqrft)</option>
-											  <option value="0 AND 3000">< 3000</option>
-											  <option value="3000 AND 5000">3000 - 5000</option>
-											  <option value="5000 AND 10000">5000 - 10,000</option>
-											  <option value="10000 AND 15000">10,000 - 15,000</option>
-											  <option value="15000 AND 25000">15,000 - 25,000</option>
-											  <option value="25000 AND 35000">25,000 - 35,000</option>
-											  <option value="35000 AND 50000">35,000 - 50,000</option>
-											  <option value="50000 AND 99999">> 50,000</option>
-										  </select>
-									  </div>
-								</div>
-							  </div>
-
-							  <div class="row">
-								  <div>
-									 <div class="d-flex justify-content-center">
-										<div class="form-outline">
-										  <button class="btn user-btns" type="submit" name="sub" value="srch2">Find plot</button>
-									  </div>
-									 </div>
-								  </div>
-							  </div>
-						</form>
+						</div>
+					</div>
+				</form>
             </div>
+
             <div class="tab-content" id="tab2-content" style="display: none;">
-                <h2 class="py-3">Find Rental</h2>
+                <h2 class="py-3">Find Rentals</h2>
                 <form action="/rentalSearch" method="post" role="search">
-
-							<div class="row d-flex justify-content-center">
-								<div class="col-md-3 mb-1">
-									  <div class="form-outline"></div>
-								</div>
-								<div class="col-md-4 mb-1">
-									  <div class="form-outline">
-										<input class="form-control me-2" type="search" name="rname" placeholder="Enter Rental Name" aria-label="Search">
-									  </div>
-								</div>
-								<div class="col-md-5 d-flex justify-content-start mb-2">
-									  <div class="form-outline">
-										  <button class="btn user-btns ms-2" type="submit" name="btnclick" value="srch">Search</button>
-									  </div>
-								</div>
+					<div class="row d-flex justify-content-center">
+						<div class="col-md-2 mb-1">
+							<div class="form-outline"></div>
+						</div>
+						<div class="col-md-6 mb-1">
+							<div class="form-outline">
+								<input class="form-control me-2" type="search" name="rname" aria-label="Search"
+									   placeholder="Enter Rental Name or Place">
 							</div>
-
-							<div class="row d-flex justify-content-center">
-								<div class="col-md-6 d-flex justify-content-center">
-									<h4 class="mb-2 pb-md-0">Or</h4>
-								</div>
+						</div>
+						<div class="col-md-4 d-flex justify-content-start mb-2">
+							<div class="form-outline">
+								<button class="btn user-btns ms-2" type="submit" name="btnclick" value="srch">Search</button>
 							</div>
+						</div>
+					</div>
 
-							<div class="row d-flex justify-content-center">
-								<div class="col-md-3 mb-1">
-									  <div class="form-outline"></div>
-								</div>
-								<div class="col-md-4 mb-1">
-									  <div class="form-outline">
-										<input class="form-control me-2" type="search" name="lname" placeholder="Search by place" aria-label="Search">
-									  </div>
-								</div>
-								<div class="col-md-5 d-flex justify-content-start mb-2">
-									  <div class="form-outline">
-										  <button class="btn user-btns ms-2" type="submit" name="btnclick" value="srch1">Search</button>
-									  </div>
-								</div>
+					<div class="row d-flex justify-content-center">
+						<div class="col-md-6 d-flex justify-content-center">
+							<h4 class="my-2">Or</h4>
+						</div>
+					</div>
+
+					<div class="row d-flex justify-content-center">
+						<div class="col-md-6 mb-4 pb-2">
+						  <div class="form-outline">
+							 <select class="form-control form-control-md" name="storey" id="storey">
+								 <option value="None">Select Storey Type</option>
+								 <option value="Single Storey Single Room">Single Storey Single Room</option>
+								 <option value="Single Storey Multi Rooms">Single Storey Multi Rooms</option>
+								 <option value="Multi Storey Single Rooms">Multi Storey Single Rooms</option>
+								 <option value="Multi Storey Multi Rooms">Multi Storey Multi Rooms</option>
+							 </select>
+						  </div>
+						</div>
+					</div>
+
+					<div class="row d-flex justify-content-center">
+						<div class="col-md-6 mb-4 pb-2">
+							<div class="form-outline">
+								<select class="form-control form-control-md" name="rprice">
+									<option value="0 AND 999999999">Select Rent range (in rupees)</option>
+									<option value="0 AND 100000">~1 lakh</option>
+									<option value="100000 AND 200000">1 lakh &emsp; - &emsp;2 lakhs</option>
+									<option value="200000 AND 500000">2 lakhs &emsp; - &emsp;5 lakhs</option>
+									<option value="500000 AND 700000">5 lakhs &emsp; - &emsp;7 lakhs</option>
+									<option value="700000 AND 200000">7 lakhs &emsp; - &emsp;15 lakhs</option>
+									<option value="1500000 AND 2500000">15 lakhs&emsp;- &emsp;25 lakhs</option>
+									<option value="2500000 AND 3500000">25 lakhs&emsp;- &emsp;35 lakhs</option>
+									<option value="3500000 AND 5000000">35 lakhs&emsp;- &emsp;50 lakhs</option>
+									<option value="5000000 AND 7500000">50 lakhs&emsp;- &emsp;75 lakhs</option>
+									<option value="7500000 AND 10000000">75 lakhs&emsp;- &emsp; 1 crore</option>
+									<option value="10000000 AND 30000000">1 crore &emsp;- &emsp;3 crores</option>
+									<option value="30000000 AND 70000000">3 crores &emsp;- &emsp;7 crores</option>
+									<option value="70000000 AND 100000000">7 crores &emsp;- &emsp;10 crores</option>
+									<option value="100000000 AND 150000000">10 crores&emsp;- &emsp;15 crores</option>
+									<option value="150000000"> 15 crores</option>
+								</select>
 							</div>
+						</div>
+					</div>
 
-							<div class="row d-flex justify-content-center">
-								<div class="col-md-6 d-flex justify-content-center">
-									<h4 class="mb-2 pb-md-0">Or</h4>
-								</div>
-							</div>
+					<div class="row d-flex justify-content-center">
+						<div class="col-md-6 mb-3 pb-2">
+							  <div class="form-outline">
+								  <select class="form-control form-control-md" name="rarea">
+									  <option value="0 AND 999999999">Select Area (in sqrft)</option>
+									  <option value="0 AND 3000">< 3000</option>
+									  <option value="3000 AND 5000">3000 - 5000</option>
+									  <option value="5000 AND 10000">5000 - 10,000</option>
+									  <option value="10000 AND 15000">10,000 - 15,000</option>
+									  <option value="15000 AND 25000">15,000 - 25,000</option>
+									  <option value="25000 AND 35000">25,000 - 35,000</option>
+									  <option value="35000 AND 50000">35,000 - 50,000</option>
+									  <option value="50000 AND 99999">> 50,000</option>
+								  </select>
+							  </div>
+						</div>
+					</div>
 
-							<div class="row d-flex justify-content-center">
-								<div class="col-md-6 mb-4 pb-2">
-								  <div class="form-outline">
-									 <select class="form-control form-control-md" name="storey" id="storey">
-										 <option value="None">Select Storey Type</option>
-										 <option value="Single Storey Single Room">Single Storey Single Room</option>
-										 <option value="Single Storey Multi Rooms">Single Storey Multi Rooms</option>
-										 <option value="Multi Storey Single Rooms">Multi Storey Single Rooms</option>
-										 <option value="Multi Storey Multi Rooms">Multi Storey Multi Rooms</option>
-									 </select>
-								  </div>
-								</div>
-							</div>
-
-							<div class="row d-flex justify-content-center">
-								<div class="col-md-6 mb-4 pb-2">
-									<div class="form-outline">
-										<select class="form-control form-control-md" name="rprice">
-											<option value="">Select Rent range (in rupees)</option>
-											<option value="0 AND 100000">~1 lakh</option>
-											<option value="100000 AND 200000">1 lakh &emsp; - &emsp;2 lakhs</option>
-											<option value="200000 AND 500000">2 lakhs &emsp; - &emsp;5 lakhs</option>
-											<option value="500000 AND 700000">5 lakhs &emsp; - &emsp;7 lakhs</option>
-											<option value="700000 AND 200000">7 lakhs &emsp; - &emsp;15 lakhs</option>
-											<option value="1500000 AND 2500000">15 lakhs&emsp;- &emsp;25 lakhs</option>
-											<option value="2500000 AND 3500000">25 lakhs&emsp;- &emsp;35 lakhs</option>
-											<option value="3500000 AND 5000000">35 lakhs&emsp;- &emsp;50 lakhs</option>
-											<option value="5000000 AND 7500000">50 lakhs&emsp;- &emsp;75 lakhs</option>
-											<option value="7500000 AND 10000000">75 lakhs&emsp;- &emsp; 1 crore</option>
-											<option value="10000000 AND 30000000">1 crore &emsp;- &emsp;3 crores</option>
-											<option value="30000000 AND 70000000">3 crores &emsp;- &emsp;7 crores</option>
-											<option value="70000000 AND 100000000">7 crores &emsp;- &emsp;10 crores</option>
-											<option value="100000000 AND 150000000">10 crores&emsp;- &emsp;15 crores</option>
-											<option value="150000000"> 15 crores</option>
-										</select>
-									</div>
-								</div>
-							</div>
-
-							<div class="row d-flex justify-content-center">
-								<div class="col-md-6 mb-3 pb-2">
-									  <div class="form-outline">
-										  <select class="form-control form-control-md" name="rarea">
-											  <option value="">Select Area (in sqrft)</option>
-											  <option value="0 AND 3000">< 3000</option>
-											  <option value="3000 AND 5000">3000 - 5000</option>
-											  <option value="5000 AND 10000">5000 - 10,000</option>
-											  <option value="10000 AND 15000">10,000 - 15,000</option>
-											  <option value="15000 AND 25000">15,000 - 25,000</option>
-											  <option value="25000 AND 35000">25,000 - 35,000</option>
-											  <option value="35000 AND 50000">35,000 - 50,000</option>
-											  <option value="50000 AND 99999">> 50,000</option>
-										  </select>
-									  </div>
-								</div>
-							</div>
-
-							<div class="row">
-								  <div>
-									 <div class="d-flex justify-content-center">
-										<div class="form-outline">
-										  <button class="btn user-btns" type="submit" name="btnclick" value="srch2">Find Rental</button>
-									  </div>
-									 </div>
-								  </div>
-							</div>
-
-
-						</form>
+					<div class="row">
+						  <div>
+							 <div class="d-flex justify-content-center">
+								<div class="form-outline">
+								  <button class="btn user-btns" type="submit" name="btnclick" value="srch2">Find Rental</button>
+							  </div>
+							 </div>
+						  </div>
+					</div>
+				</form>
             </div>
       </div>
     </div>

@@ -92,7 +92,11 @@ def addDealer():
 @app.route('/viewDealerList', methods=['GET', 'POST'])
 def viewDealerList():
     if request.method == 'POST':
-        pass
+        dname = request.form['dname']
+        cmd.execute(f"SELECT *, DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),`dob`)), '%Y') + 0 AS age FROM `dealer` \
+        WHERE `name` LIKE '%{dname}%' ")
+        res = cmd.fetchall()
+        return render_template('admin-view-dealerList.html', dealers=res)
     else:
         cmd.execute("SELECT *, DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),`dob`)), '%Y') + 0 AS age FROM `dealer`")
         res = cmd.fetchall()
@@ -239,7 +243,12 @@ def addPlot():
 @app.route('/viewPlotList', methods=['GET', 'POST'])
 def viewPlotList():
     if request.method == 'POST':
-        pass
+        pname = request.form['dname']
+        cmd.execute(f"SELECT `plot`.*, `plot_locations`.`address`,`state`,`county`, `dealer`.`name`,`dealer`.`login_id` \
+        FROM `dealer`, `plot_locations`, `plot` WHERE `plot`.`plot_id`=`plot_locations`.`ref_id` \
+        AND `plot`.`login_id`=`dealer`.`login_id` AND (`plot`.`name` LIKE '%{pname}%' OR `dealer`.`name` LIKE '%{pname}%')")
+        res = cmd.fetchall()
+        return render_template('admin-view-plotList.html', plots=res)
     else:
         cmd.execute("SELECT `plot`.*, `plot_locations`.`address`,`state`,`county`, `dealer`.`name`,`dealer`.`login_id` FROM \
         `dealer`, `plot_locations`, `plot` WHERE `plot`.`plot_id`=`plot_locations`.`ref_id` AND `plot`.`login_id`=`dealer`.`login_id`")
@@ -359,7 +368,7 @@ def addRental():
         cmd.execute("SELECT `name` FROM `dealer` WHERE `login_id`='"+dealer_id+"'")
         usr = cmd.fetchone()[0]
 
-        cmd.execute("INSERT INTO `rental` VALUES(NULL,'"+dealer_id+"','"+name+"','"+area+"','"+rent+"','"+storey+"',NULL,NULL, '"+str(count)+"','pending','0')")
+        cmd.execute("INSERT INTO `rental` VALUES(NULL,'"+dealer_id+"','"+name+"','"+str(loc)+"','"+area+"','"+rent+"','"+storey+"',NULL,NULL, '"+str(count)+"','pending','0')")
         rid = str(con.insert_id())
 
         cmd.execute("INSERT INTO `rental_locations` VALUES(NULL,'"+rid+"','"+lati+"','"+long+"', '"+str(loc)+"', '"+state+"', '"+county+"', '"+str(zipcode)+"')")
@@ -467,7 +476,7 @@ def editRental(rid):
             cmd.execute("UPDATE `rental` SET `count`='"+str(ogc)+"' WHERE `rental_id`='"+rid+"' ")
             con.commit()
         cmd.execute("UPDATE `rental` SET `login_id`='"+dealer_id+"', `name`='"+name+"',`area`='"+area + "',\
-        `type`='"+storey+"',`price`='"+rent+"' WHERE `rental_id`='"+rid+"' ")
+        `storey`='"+storey+"',`rent`='"+rent+"' WHERE `rental_id`='"+rid+"' ")
         con.commit()
         return f"<script>alert('Updated');window.location='/viewRental/{rid}'</script>"
     else:
@@ -508,10 +517,18 @@ def addEngineer():
         return render_template('admin-add-engineer.html')
 
 
-@app.route('/viewEngineers')
+@app.route('/viewEngineers', methods=['GET', 'POST'])
 def viewEngineers():
-    cmd.execute("SELECT *, DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),`dob`)), '%Y') + 0 AS age FROM `engineer`")
-    res = cmd.fetchall()
+    if request.method == "POST":
+        kword = request.form['kword']
+        cmd.execute(f"SELECT *, DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),`dob`)), '%Y') + 0 AS age FROM `engineer`\
+         WHERE `name` LIKE '%{kword}%' OR `discipline` LIKE '%{kword}%'")
+        res = cmd.fetchall()
+        print(res)
+    else:
+        cmd.execute("SELECT *, DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),`dob`)), '%Y') + 0 AS age FROM `engineer`")
+        res = cmd.fetchall()
+        print(res)
     return render_template('admin-view-engList.html', res=res)
 
 
@@ -526,12 +543,12 @@ def viewEngineer(eid):
 def editEngineer(eid):
     if request.method == 'POST':
         name = request.form['ename']
-        exp = request.form['exp']
-        email = request.form['email']
-        phone = request.form['phone']
         gender = request.form['gender']
-        discipline = request.form['disc']
         dob = request.form['dob']
+        phone = request.form['phone']
+        email = request.form['email']
+        discipline = request.form['disc']
+        exp = request.form['exp']
 
         loc = request.form['loc']
         fname = request.form['fname']
@@ -559,12 +576,13 @@ def editEngineer(eid):
     else:
         cmd.execute("SELECT *, DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),`dob`)), '%Y') + 0 AS age FROM `engineer` WHERE `eng_id`='"+eid+"'")
         res = cmd.fetchone()
+        print(res)
         return render_template('admin-edit-eng.html', eng=res)
 
 
 @app.route('/deleteEngineer/<eid>')
 def deleteEngineer(eid):
-    cmd.execute("SELECT `filename` FROM `engineer` WHERE `merc_id`='"+eid+"'")
+    cmd.execute("SELECT `filename` FROM `engineer` WHERE `eng_id`='"+eid+"'")
     res = cmd.fetchone()[0]
     if res:
         os.remove("static/images/engineers/" + res)
@@ -606,11 +624,20 @@ def addMerchant():
         return render_template('admin-add-merch.html')
 
 
-@app.route('/viewMerchants')
+@app.route('/viewMerchants', methods=['GET', 'POST'])
 def viewMerchants():
-    cmd.execute("SELECT *, DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),`dob`)), '%Y') + 0 AS age FROM `merchant`")
-    res = cmd.fetchall()
-    return render_template('admin-view-merchs.html', res=res)
+    if request.method == "POST":
+        kword = request.form['kword']
+        cmd.execute(f"SELECT *, DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),`dob`)), '%Y') + 0 AS age FROM `merchant`\
+        WHERE `name` LIKE '%{kword}%' OR `bname` LIKE  '%{kword}%' OR `btype` LIKE  '%{kword}%'")
+        res = cmd.fetchall()
+        print(res)
+        return render_template('admin-view-merchList.html', res=res)
+    else:
+        cmd.execute("SELECT *, DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),`dob`)), '%Y') + 0 AS age FROM `merchant`")
+        res = cmd.fetchall()
+        print(res)
+        return render_template('admin-view-merchList.html', res=res)
 
 
 @app.route('/viewMerchant/<mid>')
@@ -664,9 +691,9 @@ def editMerchant(mid):
         return redirect(f"/viewMerchant/{mid}")
 
     else:
-        cmd.execute("SELECT *, DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),`dob`)), '%Y') + 0 AS age FROM `merchant` \
-        WHERE `merc_id`='"+mid+"'")
+        cmd.execute("SELECT * FROM `merchant` WHERE `merc_id`='"+mid+"'")
         res = cmd.fetchone()
+        print(res)
         return render_template('admin-edit-merch.html', merch=res)
 
 
@@ -864,24 +891,17 @@ def plotSearch():
         # search by plot name
         if sub == 'srch':
             pname = request.form['pname']
-            cmd.execute(f"SELECT `plot`.*,`dealer`.`name`, `plot_locations`.`county`,`state` FROM `plot`, `dealer`, `plot_locations`\
-            WHERE `plot`.`login_id`=`dealer`.`login_id` AND `plot`.`login_id` != '{lid}' AND `plot`.`plot_id`=`plot_locations`.`ref_id` \
-            AND `plot`.`name` LIKE '%{pname}%'")
-            res = cmd.fetchall()
-            if res:
-                return render_template("user-search-plots.html", plots=res, temp=temp)
-            else:
-                return "<script>alert('No search result');window.location='/plotSearch'</script>"
-
-        # search by place name
-        elif sub == 'srch1':
-            county = request.form['cname']
-            cmd.execute(f"SELECT `plot`.*,`dealer`.`name`, `plot_locations`.`county`,`state` FROM `plot`, `dealer`, `plot_locations`\
-            WHERE `plot_locations`.`ref_id`=`plot`.`plot_id` AND `plot`.`login_id`=`dealer`.`login_id` \
-            AND `plot`.`login_id` != '{lid}' AND `plot`.`address` LIKE '%{county}%'")
-            res = cmd.fetchall()
-            if res:
-                return render_template("user-search-plots.html", plots=res, temp=temp)
+            print(pname)
+            if pname:
+                cmd.execute(f"SELECT `plot`.*,`dealer`.`name`, `plot_locations`.`county`,`state` FROM \
+                `plot`, `dealer`, `plot_locations` WHERE `plot`.`login_id`=`dealer`.`login_id` \
+                AND `plot`.`plot_id`=`plot_locations`.`ref_id` AND `plot`.`name` LIKE '%{pname}%' OR `plot`.`address` LIKE '%{pname}%'")
+                res = cmd.fetchall()
+                print(res)
+                if res:
+                    return render_template("user-search-plots.html", plots=res, temp=temp)
+                else:
+                    return "<script>alert('No search result');window.location='/plotSearch'</script>"
             else:
                 return "<script>alert('No search result');window.location='/plotSearch'</script>"
 
@@ -891,10 +911,11 @@ def plotSearch():
             price = request.form['price']
             area = request.form['area']
 
-            cmd.execute(f"SELECT `plot`.*,`dealer`.`name`, `plot_locations`.`county`,`state` FROM `plot`, `dealer`, `plot_locations` \
-            WHERE `plot_locations`.`ref_id`=`plot`.`plot_id` AND `plot`.`login_id`=`dealer`.`login_id` AND `plot`.`login_id` != '{lid}'\
-            AND (`area` BETWEEN {area}) AND (price BETWEEN {price}) AND `type`='{ptype}'")
+            cmd.execute(f"SELECT `plot`.*,`dealer`.`name`, `plot_locations`.`county`,`state` FROM \
+            `plot`, `dealer`, `plot_locations` WHERE `plot_locations`.`ref_id`=`plot`.`plot_id` AND \
+            `plot`.`login_id`=`dealer`.`login_id` AND `area` BETWEEN {area} AND price BETWEEN {price} AND `type`='{ptype}'")
             res = cmd.fetchall()
+            print(res)
 
             if res:
                 return render_template("user-search-plots.html", plots=res, temp=temp)
@@ -953,36 +974,30 @@ def rentalSearch():
         click = request.form['btnclick']
         if click == 'srch':
             rname = request.form['rname']
-            cmd.execute(f"SELECT `rental`.*,`dealer`.`name`, `rental_locations`.`county`,`state` \
-            FROM `rental`, `dealer`, `rental_locations` WHERE `rental`.`login_id`=`dealer`.`login_id` AND \
-            `rental`.`login_id`!='{lid}' AND `rental`.`rental_id`=`rental_locations`.`ref_id` AND `rental`.`name` LIKE '%{rname}%'")
-            res = cmd.fetchall()
-            if res:
-                return render_template("user-search-rentals.html", rentals=res)
+            if rname:
+                print(rname)
+                cmd.execute(f"SELECT `rental`.*,`dealer`.`name`, `rental_locations`.`county`,`state` FROM `rental`,`dealer`,\
+                 `rental_locations` WHERE `rental`.`login_id`=`dealer`.`login_id` AND `rental`.`rental_id`=`rental_locations`.`ref_id`\
+                  AND `rental`.`name` LIKE '%{rname}%' OR `rental`.`address` LIKE '%{rname}%'")
+                res = cmd.fetchall()
+                print(res)
+                if res:
+                    print("hello")
+                    return render_template("user-search-rentals.html", rentals=res)
+                else:
+                    return "<script>alert('No search result');window.location='/rentalSearch'</script>"
             else:
+                print("NO RESULT")
                 return "<script>alert('No search result');window.location='/rentalSearch'</script>"
 
-        elif click == 'srch1':
-            county = request.form['lname']
-            cmd.execute(f"SELECT `rental`.*, `dealer`.`name`, `rental_locations`.`county`,`state` FROM \
-            `rental`, `dealer`, `rental_locations` WHERE `rental`.`login_id`=`dealer`.`login_id` AND \
-            `rental`.`login_id`!='{lid}' AND `rental`.`rental_id`=`rental_locations`.`ref_id` AND \
-            `rental`.`address` LIKE '%{county}%'")
-            res = cmd.fetchall()
-            if res:
-                return render_template("user-search-rentals.html", rentals=res)
-            else:
-                return "<script>alert('No search result');window.location='/rentalSearch'</script>"
-
-        elif click == 'srch2':
+        else:
             storey = request.form['storey']
             price = request.form['rprice']
             area = request.form['rarea']
 
-            cmd.execute(f"SELECT `rental`.*,`dealer`.`name`, `rental_locations`.`county`,`state` FROM \
-            `rental`, `dealer`, `rental_locations` WHERE `rental`.`login_id`=`dealer`.`login_id` AND \
-            `rental`.`login_id`!='{lid}' AND `rental`.`rental_id`=`rental_locations`.`ref_id` AND \
-            (`area` BETWEEN {area}) AND (`rent` BETWEEN {price}) AND `storey`='{storey}' ")
+            cmd.execute(f"SELECT `rental`.*,`dealer`.`name`, `rental_locations`.`county`,`state` FROM `rental`,`dealer`,\
+             `rental_locations` WHERE `rental`.`login_id`=`dealer`.`login_id` AND `rental`.`rental_id`=`rental_locations`.`ref_id` AND\
+             `area` BETWEEN {area} AND `rent` BETWEEN {price} AND `storey`='{storey}' ")
             res = cmd.fetchall()
 
             if res:

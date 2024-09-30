@@ -4,26 +4,27 @@
 {% block body %}
 <div class="container py-4 h-100">
 	<div class="row justify-content-center align-items-center h-100" id="usr_cntrols">
-	  <div class="col-12 col-lg-9 col-xl-7">
+	  <div class="col-12 col-lg-9 col-xl-7 outer-container">
             <div class="tabs-container">
-                <button class="tab active" onclick="openTab('tab1')">Engineers</button>
-                <button class="tab" onclick="openTab('tab2')">Merchants</button>
+                <button class="tab active" onclick="openTab(event, 'tab1')">Engineers</button>
+                <button class="tab" onclick="openTab(event, 'tab2')">Merchants</button>
             </div>
             <div class="tab-content" id="tab1-content">
                 <h2 class="py-3">Find Engineers</h2>
-                <form action="/userSearchEng" method="post" role="search">
+
+                <form action="/userSearchEng" method="post" role="search" onsubmit="return validateForm(event);">
 					<div class="row d-flex justify-content-center">
 						<div class="col-md-3 mb-1">
 							<div class="form-outline"></div>
 						</div>
 						<div class="col-md-4 mb-1">
 							<div class="form-outline">
-								<input class="form-control me-2" type="search" name="ename" placeholder="Enter Engineer Name">
+								<input class="form-control me-2" type="search" id="engineer_name" name="ename" placeholder="Enter Engineer Name">
 							</div>
 						</div>
 						<div class="col-md-5 d-flex justify-content-start mb-2">
 							<div class="form-outline">
-								<button class="btn user-btns ms-2" type="submit" name="sub" value="eng">Search</button>
+								<button class="btn user-btns ms-2" type="submit" name="sub" value="eng" onclick="validateInput('engineer_name')">Search</button>
 							</div>
 						</div>
 					</div>
@@ -40,7 +41,7 @@
 						</div>
 						<div class="col-md-4 mb-1">
 							  <div class="form-outline">
-								<input class="form-control me-2" type="search" name="eplace" placeholder="Search by place" aria-label="Search">
+								<input class="form-control me-2" type="search" name="eplace" id="engineer_place" placeholder="Search by place" aria-label="Search">
 							  </div>
 						</div>
 						<div class="col-md-5 d-flex justify-content-start mb-2">
@@ -57,7 +58,10 @@
 					</div>
 
 					<div class="row d-flex justify-content-center">
-						<div class="col-md-6 mb-4 pb-2">
+						<div class="col-md-3 mb-1">
+							<div class="form-outline"></div>
+					  	</div>
+						<div class="col-md-4 mb-4 pb-2">
 							<div class="form-outline">
 								<select class="form-control form-control-md" id="disc" name="disc">
 									<option value="">Search By Discipline</option>
@@ -68,27 +72,35 @@
 								</select>
 							</div>
 						</div>
+						<div class="col-md-5 d-flex justify-content-start mb-2">
+							<div class="form-outline">
+								<button class="btn user-btns ms-2" type="submit" name="sub" value="discipline" >Search</button>
+							</div>
+					  </div>
 					</div>
 
 					<div class="row">
 						<div class="d-flex justify-content-center">
 							<div class="form-outline">
-								<button class="btn user-btns" type="submit" name="sub" value="Discipline">Search</button>
+								<button class="btn user-back" type="button" onclick="window.location='/userHome'">Back</button>
 							</div>
 						</div>
 					</div>
 				</form>
             </div>
+
+
+			<!-------------------------- tab 2 content ------------------------------------>
             <div class="tab-content" id="tab2-content" style="display: none;">
                 <h2 class="py-3">Find Merchants</h2>
-                <form action="/userSearchMerc" method="post" role="search">
+                <form action="/userSearchMerc" method="post" role="search" onsubmit="return validateMerchantForm(event)">
 					<div class="row d-flex justify-content-center">
 						<div class="col-md-3 mb-1">
 							<div class="form-outline"></div>
 						</div>
 						<div class="col-md-4 mb-1">
 							<div class="form-outline">
-								<input class="form-control me-2" type="search" name="mname" placeholder="Search By Merchant Name">
+								<input class="form-control me-2" type="search" name="mname" id="mname" placeholder="Search By Merchant Name">
 							</div>
 						</div>
 						<div class="col-md-5 d-flex justify-content-start mb-2">
@@ -110,7 +122,7 @@
 						</div>
 						<div class="col-md-4 mb-1">
 							<div class="form-outline">
-								<input class="form-control me-2" type="search" name="bname" placeholder="Search By Business Name">
+								<input class="form-control me-2" type="search" name="bname" id="bname" placeholder="Search By Business Name">
 							</div>
 						</div>
 						<div class="col-md-5 d-flex justify-content-start mb-2">
@@ -132,7 +144,7 @@
 						</div>
 						<div class="col-md-4 mb-1">
 							  <div class="form-outline">
-								<input class="form-control me-2" type="search" name="bplace" placeholder="Search by place" aria-label="Search">
+								<input class="form-control me-2" type="search" name="bplace" id="bplace" placeholder="Search by place" aria-label="Search">
 							  </div>
 						</div>
 						<div class="col-md-5 d-flex justify-content-start mb-2">
@@ -149,7 +161,10 @@
 					</div>
 
 					<div class="row d-flex justify-content-center">
-						<div class="col-md-6 mb-4 pb-2">
+						<div class="col-md-3 mb-1">
+							<div class="form-outline"></div>
+					    </div>
+						<div class="col-md-4 mb-4 pb-2">
 							<div class="form-outline">
 								<select class="form-control form-control-md" id="btype" name="btype">
 									<option value="">Business Field</option>
@@ -160,12 +175,18 @@
 								</select>
 							</div>
 						</div>
+						<div class="col-md-5 d-flex justify-content-start mb-2">
+							<div class="form-outline">
+								<button class="btn user-btns ms-2" type="submit" name="sub" value="Btype">Search</button>
+							</div>
+					    </div>
 					</div>
 
 					<div class="row">
 						<div class="d-flex justify-content-center">
 							<div class="form-outline">
-								<button class="btn user-btns" type="submit" name="sub" value="Btype">Find</button>
+								<button class="btn user-back" type="button" onclick="window.location='/userHome'">Back</button>
+								
 							</div>
 						</div>
 					</div>
@@ -175,31 +196,107 @@
     </div>
 </div>
 
+
 <script>
-function openTab(tabName) {
-    var i, tabContent;
+	function openTab(event, tabName) {
+		var i, tabContent, tabs;
+	
+		// Hide all tab content
+		tabContent = document.getElementsByClassName("tab-content");
+		for (i = 0; i < tabContent.length; i++) {
+			tabContent[i].style.display = "none";
+		}
+	
+		// Deactivate all tabs
+		tabs = document.getElementsByClassName("tab");
+		for (i = 0; i < tabs.length; i++) {
+			tabs[i].className = tabs[i].className.replace(" active", "");
+		}
+	
+		// Show the selected tab content
+		document.getElementById(tabName + "-content").style.display = "block";
+	
+		// Activate the clicked tab
+		event.currentTarget.className += " active";
+	}
+	
+	// Initially open the first tab
+	document.addEventListener("DOMContentLoaded", function() {
+		document.getElementsByClassName("tab")[0].click();
+	});
 
-    // Hide all tab content
-    tabContent = document.getElementsByClassName("tab-content");
-    for (i = 0; i < tabContent.length; i++) {
-        tabContent[i].style.display = "none";
-    }
 
-    // Deactivate all tabs
-    tabs = document.getElementsByClassName("tab");
-    for (i = 0; i < tabs.length; i++) {
-        tabs[i].className = tabs[i].className.replace(" active", "");
-    }
+	function validateForm(event) {
+    // Get the clicked submit button
+		var clickedButton = event.submitter; 
 
-    // Show the selected tab content
-    document.getElementById(tabName + "-content").style.display = "block";
+		// Validate based on which button was clicked
+		if (clickedButton.value === "eng") {
+			var engineerName = document.getElementById("engineer_name").value;
+			if (engineerName.trim() === "") {
+				alert("Please enter an Engineer Name!");
+				document.getElementById("engineer_name").focus();
+				return false; 
+			}
+		} else if (clickedButton.value === "place1") {
+			var engineerPlace = document.getElementById("engineer_place").value;
+			if (engineerPlace.trim() === "") {
+				alert("Please enter a Place to search!");
+				document.getElementById("engineer_place").focus();
+				return false; 
+			}
+		} else if (clickedButton.value === "discipline") {
+			var disciplineSelect = document.getElementById("disc");
+			console.log("Discipline; ", disciplineSelect);
+			if (disciplineSelect.value === "") {
+				alert("Please select a Discipline!");
+				disciplineSelect.focus();
+				return false; 
+			}
+		}
 
-    // Activate the clicked tab
-    event.currentTarget.className += " active";
-}
+		// If all validations pass, allow form submission
+		return true;
+	}
 
-// Initially open the first tab
-openTab("tab1");
+	// Validate the merchant search form
+	function validateMerchantForm(event) {
+		var clickedButton = event.submitter;
+
+		if (clickedButton.value === "merch") {
+			var merchantName = document.getElementById("mname").value;
+			if (merchantName.trim() === "") {
+				alert("Please enter a Merchant Name!");
+				document.getElementById("mname").focus();
+				return false; 
+			}
+		} else if (clickedButton.value === "Buss") {
+			var businessName = document.getElementById("bname").value;
+			if (businessName.trim() === "") {
+				alert("Please enter a Business Name!");
+				document.getElementById("bname").focus();
+				return false; 
+			}
+		} else if (clickedButton.value === "Bplace") {
+			var businessPlace = document.getElementById("bplace").value;
+			if (businessPlace.trim() === "") {
+				alert("Please enter a Place to search!");
+				document.getElementById("bplace").focus();
+				return false; 
+			}
+		} else if (clickedButton.value === "Btype") {
+			var businessTypeSelect = document.getElementById("btype");
+			if (businessTypeSelect.value === "") {
+				alert("Please select a Business Field!");
+				businessTypeSelect.focus();
+				return false; 
+			}
+		}
+
+		return true;
+	}
+
 </script>
+
 
 {% endblock %}

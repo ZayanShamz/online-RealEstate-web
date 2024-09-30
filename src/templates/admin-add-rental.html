@@ -15,12 +15,12 @@
 					<div class="col-md-6">
 					  <div class="form-outline">
 						<input type="text" id="rname" name="rname" class="inputs form-control"
-							   placeholder="Enter Rental Name"/>
+							   placeholder="Enter Rental Name" required/>
 					  </div>
 					</div>
 					<div class="col-md-6">
 						<div class="form-outline">
-							<select class="inputs form-control" id="dealer" name="dealer">
+							<select class="inputs form-control" id="dealer" name="dealer" required>
 								<option selected>Select Owner</option>
 									{% for i in dealer %}
 								<option value="{{ i[0] }}">{{ i[1] }}</option>
@@ -33,13 +33,13 @@
 				<div class="row mb-4 px-3">
 					<div class="col-md-6">
 						<div class="form-outline">
-							<input type="text" id="area" name="area" class="inputs form-control"
-								   placeholder="Rental Area (in sqrft)"/>
+							<input type="number" id="area" name="area" class="inputs form-control"
+								   placeholder="Rental Area (in sqrft)" required/>
 						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="form-group">
-							<select class="inputs form-control" name="storey" id="storey">
+							<select class="inputs form-control" name="storey" id="storey" required>
 								<option value="None">Rental Storey/Rooms</option>
                                 <option value="Single Storey Single Room">Single Storey Single Room</option>
                                 <option value="Single Storey Multi Rooms">Single Storey Multi Rooms</option>
@@ -57,30 +57,30 @@
 					</div>
 					<div class="col-md-6">
 						<div class="form-outline">
-							<input type="text" name="rent" id="rent" class="inputs form-control"
-								   placeholder="Enter Rent (in Rupees)">
+							<input type="number" name="rent" id="rent" class="inputs form-control"
+								   placeholder="Enter Rent (in Rupees)" required/>
 						</div>
 					</div>
 				</div>
 
 				<div class="row mb-4 px-3">
 					<div class="col-md-3">
-						<input type="text" name="lat" id="lat" class="inputs form-control" placeholder="Latitude">
+						<input type="text" name="lat" id="lat" class="inputs form-control" placeholder="Latitude" required/>
 					</div>
 					<div class="col-md-3">
-						<input type="text" name="lon" id="lon" class="inputs form-control" placeholder="Longitude"/>
+						<input type="text" name="lon" id="lon" class="inputs form-control" placeholder="Longitude" required/>
 					</div>
 					<div class="col-md-6">
-						<input type="file" name="files" class="inputs form-control " multiple>
+						<input type="file" name="files" class="inputs form-control" multiple required>
 					</div>
 				</div>
 
-				<div class="row mb-4 px-3">
+				<div class="row mb-4 px-3" id="usr_cntrols">
 					<div class="col-md-6 d-flex justify-content-end">
-					  <div onclick="goBack()" class="btn btn-outline-secondary">Back</div>
+					  <div onclick="goBack()" class="btn user-back">Back</div>
 					</div>
 					<div class="col-md-6 d-flex justify-content-start">
-					  <button type="submit" id="login-btn" class="btn btn-warning btn-block" onclick="return valid()">SUBMIT</button>
+					  <button type="submit" id="login-btn" class="btn user-btns btn-block">SUBMIT</button>
 					</div>
 				</div>
 
@@ -148,42 +148,4 @@
 <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJKQEiMYJvUzXzKeaGIK0754YOuTad_bQ&callback=myMap">
 </script>
-
-<script type="text/javascript">
-function valid()
-{
-	if(document.getElementById("rname").value=="")
-	{
-		alert("Please Enter Rental Name!");
-		document.getElementById("rname").focus();
-    	return false;
- 	}
-
-	if(document.getElementById("area").value=="")
-	{
-		alert("Please Fill The Area Column!");
-		document.getElementById("area").focus();
-    	return false;
- 	}
-	if(document.getElementById("rent").value=="")
-   	{
-     	alert("Enter Phone Number");
-     	document.getElementById("rent").focus();
-     	return false;
- 	}
-	if(/[^0-9]/gi.test(document.getElementById("rent").value))
-	{
-		alert("Please enter amount in digits only");
-		document.getElementById("rent").focus();
-		return false;
-	}
-	if(document.getElementById("lon").value=="")
-	{
-		alert("Location not Selected");
-		document.getElementById("lon").focus();
-    	return false;
- 	}
-}
-</script>
-
 {% endblock %}

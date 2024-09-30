@@ -1,0 +1,96 @@
+{% extends "design-user.html" %}
+
+{% block title%} Properties @Realtor {% endblock %}
+
+
+{% block body %}
+<div class="container-fluid">
+  <div class="main-body d-flex justify-content-center">
+  <div class="col-md-6">
+          <div class="row px-3 mt-3">
+              <div class="col-9">
+                <h3 align="center">Realtor Properties</h3>
+              </div>
+              <div class="col-3 d-flex justify-content-center">
+                  <div onclick="window.location='/plotSearch'" class="btn btn-outline-secondary">Back</div>
+              </div>
+          </div>
+
+          <hr>
+           {% if plots %}
+          
+           {% for i in plots %}
+          <div class="container my-3" id="login-box">
+            <div class="p-3" onclick="window.location='/userPlot/{{ i[0] }}'">
+                <div class="row px-3 mb-2">
+                    <div class="col-md-2 d-flex justify-content-end">
+                      {{ loop.index }} &ensp; -
+                    </div>
+                    <div class="col-md-5">
+                      <b>{{ i[2] }}</b>
+                    </div>
+                    <div class="col-md-2 d-flex justify-content-end">
+                      Status : 
+                    </div>
+                    <div class="col-md-3">
+                        <span class="text text-secondary">{{ i[10] }} </span>
+                    </div>
+                </div>
+                
+                <div class="row px-3 mb-2">
+                      <div class="col-md-2 d-flex justify-content-end">
+                        Owner :
+                      </div>
+                      <div class="col-md-5">
+                        <span class="text text-secondary">{{ i[12] }}</span>
+                      </div>
+                      <div class="col-md-2 d-flex justify-content-end">
+                        Type : 
+                      </div>
+                      <div class="col-md-3">
+                          <span class="text text-secondary">{{ i[4] }}</span>
+                      </div>
+                </div>
+                
+                <div class="row px-3 mb-2">
+                      <div class="col-md-2 d-flex justify-content-end">
+                        Price :
+                      </div>
+                      <div class="col-md-5">
+                        <span class="text text-secondary">Rs. {{ i[5] }}</span>
+                      </div>
+                      <div class="col-md-2 d-flex justify-content-end">
+                        Area : 
+                      </div>
+                      <div class="col-md-3">
+                          <span class="text text-secondary">{{ i[3] }} sqrft</span>
+                      </div>
+                </div>
+                
+                <div class="row px-3 mb-1">
+                    <div class="col-md-2 d-flex justify-content-end">
+                        Address : 
+                    </div>
+                    <div class="col-md-10">
+                      <span class="text text-secondary" title="{{ i[6] }}"  
+                      style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; width: 100%;">
+                          {% if i[7] and i[8] %}
+                              {{ i[7] }}, {{ i[8] }}
+                          {% else %}
+                              {{ i[6] }}
+                          {% endif %}
+                      </span>
+                    </div>
+                </div>
+              </div>
+          </div>
+           {% endfor %}
+          {% else %}
+          <h4 class="text text-secondary my-3" align="center">No Plots Found</h4>
+          {% endif %}
+      </div>
+  </div>
+</div>
+
+
+{% endblock %}

@@ -21,36 +21,41 @@
     {% if res %}
     <h3 class="my-3" align="center">RealEstate Engineers</h3>
     {% for i in res %}
-    <div class="col-sm-12" onclick="window.location='/viewEngineer/{{ i[0] }}'" id="login-box">
-      <div class="p-3" style="cursor:pointer;">
-          <div class="row mb-2">
-              <div class="col-2">
-                  <strong>Eng Id : {{ i[0] }} </strong>
-              </div>
-              <div class="col-5">
-                  <strong>Name : <span class="text text-secondary">{{ i[1] }}</span></strong>
-              </div>
-              <div class="col-5">
-                  <strong>Discipline : <span class="text text-secondary">{{ i[3] }}</span></strong>
-              </div>
-          </div>
-          <div class="row">
-              <div class="col-4">
-                  <small>Age : <span class="text text-secondary">{{ i[10]|int }}</span></small>
-                  <br>
-                  <small>Gender : <span class="text text-secondary">{{ i[6] }}</span></small>
-              </div>
-              <div class="col-4">
-                  <small>Phone : <span class="text text-secondary">{{ i[5] }}</span></small>
-                  <br>
-                  <small>Email : <span class="text text-secondary">{{ i[4] }}</span></small>
-              </div>
-              <div class="col-4 my-2 d-flex justify-content-center">
-                  <a class="btn btn-danger btn-sm" href="/deleteEngineer/{{ i[0] }}">Remove</a>
-              </div>
-          </div>
-      </div>
+    <div class="col-sm-12 my-3" onclick="window.location='/viewEngineer/{{ i[0] }}'" id="login-box">
+        <div class="p-3" style="cursor:pointer;">
+            <div class="row mb-2">
+                <div class="col-2">
+                    <strong>Eng Id : {{ i[0] }} </strong>
+                </div>
+                <div class="col-5">
+                    <strong>Name : <span class="text text-secondary">{{ i[1] }}</span></strong>
+                </div>
+                <div class="col-5">
+                    <strong>Discipline : <span class="text text-secondary">{{ i[3] }}</span></strong>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <small>Age : <span class="text text-secondary">{{ i[10]|int }}</span></small>
+                    <br>
+                    <small>Gender : <span class="text text-secondary">{{ i[6] }}</span></small>
+                </div>
+                <div class="col-4">
+                    <small>Phone : <span class="text text-secondary">{{ i[5] }}</span></small>
+                    <br>
+                    <small>Email : <span class="text text-secondary">{{ i[4] }}</span></small>
+                </div>
+                <div class="col-4 my-2 d-flex justify-content-center">
+                    <a class="btn btn-danger btn-sm" href="/deleteEngineer/{{ i[0] }}"
+                       onclick="event.stopPropagation(); 
+                       return confirm('Are you sure you want to remove this engineer?');">
+                        Remove
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
+    
     {% endfor %}
     {% else %}
     <h4 class="text text-secondary my-3" align="center">No Engineers Found</h4>

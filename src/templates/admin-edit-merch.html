@@ -33,7 +33,7 @@
 				<div class="row my-3 px-3">
                     <div class="col-md-6">
                         <h6>Phone : </h6>
-						<input type="text" id="phone" name="phone" class="form-control form-control-md" value="{{ merch[5] }}"/>
+						<input type="text" id="phone" name="phone" class="form-control form-control-md" value="{{ merch[4] }}"/>
                     </div>
                     <div class="col-md-6">
                         <h6>Email :</h6>
@@ -58,29 +58,24 @@
                   </div>
                 </div>
 
-				<div class="row px-3 my-3">
+                <div class="row my-3 px-3">
+                    <div class="col-md-12">
+                        <h6>Current Address : </h6>
+						<input type="text" id="address" name="address" class="form-control form-control-md" value="{{ merch[7] }}"/>
+                    </div>
+                </div>
+
+				<div class="row px-3 my-4">
 					<div class="col-md-6">
-                        <div class="row my-3">
-							<div class="col-md-12 ">
-                                <b>Current Location :</b><span class="text text-secondary"> {{ merch[7] }}</span>
-								<input type="hidden" name="loc" value="{{ merch[7] }}">
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md d-flex justify-content-center">
-								<a class="btn btn-outline-secondary btn-sm" href="#"
-								   data-bs-toggle="modal" data-bs-target="#locationModal">Change Location</a>
-                                <input type="hidden" name="lat" id="lat">
-                                <input type="hidden" name="lon" id="lon">
-							</div>
-						</div>
+                        <div class="col-md d-flex justify-content-center">
+                            <a class="btn btn-outline-secondary btn-md" href="#"
+                               data-bs-toggle="modal" data-bs-target="#locationModal">Change Location</a>
+                            <input type="hidden" name="lat" id="lat">
+                            <input type="hidden" name="lon" id="lon">
+                        </div>
 					</div>
-					<div class="col-md-6 mt-3">
-						<label for="fileInput" class="custom-file-upload">
-							Change Photo
-						</label>
-						<input type="file" id="fileInput" name="files" style="display: none;">
-						<div id="selectedFileName">No file selected</div>
+					<div class="col-md-6 d-flex justify-content-center">
+						<input type="file" id="fileInput" name="file" class="form form-control">
 						<input type="hidden" name="fname" value="{{ merch[8] }}">
 					</div>
 				</div>
@@ -96,96 +91,6 @@
             </form>
         </div>
     </div>
-</div>
-
-
-<div class="container py-4 h-100">
-	<div class="row justify-content-center align-items-center h-100">
-	  <div class="col-12 col-lg-9 col-xl-7">
-		<div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
-		  <div class="card-body p-4 p-md-3">
-			<div class="d-flex justify-content-center">
-			  <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Edit Merchant</h3>
-			</div>
-
-			<form action="//{{merch[0]}}" method="post" enctype="multipart/form-data">
-
-				<div class="row px-3 mb-4">
-					<div class="col-md-6">
-						<div class="form-outline">
-                            <label for="ename">Name</label>
-							<input type="text" id="ename" name="ename" class="form-control form-control-md" value="{{ merch[1] }}"/>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="form-outline">
-							<label for="ename">DOB</label>
-                           <input type="date" name="dob" id="dob" class="form-control"  value="{{ merch[2] }}">
-						</div>
-					</div>
-				</div>
-
-				<div class="row px-3 mb-4">
-					<div class="col-md-6">
-						<div class="form-outline">
-                            <label for="email">Email</label>
-							<input type="text" id="email" name="email" class="form-control form-control-md" value="{{ merch[5] }}"/>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<label for="phone">Phone</label>
-						<input type="text" id="phone" name="phone" class="form-control form-control-md" value="{{ merch[4] }}"/>
-					</div>
-				</div>
-
-				<div class="row px-3">
-					<div class="col-md-6">
-						<label>Business Name</label>
-
-					</div>
-					<div class="col-md-6">
-
-					</div>
-				</div>
-
-				<div class="row px-3 mb-4">
-					<div class="col-md-6 mt-2">
-                        <div class="row my-3">
-							<div class="col-md-12 ">
-                                <b>Current Location :</b> {{ merch[7] }}
-								<input type="hidden" name="loc" value="{{ merch[7] }}">
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md d-flex justify-content-center">
-								<a class="btn btn-outline-secondary btn-sm" href="#"
-								   data-bs-toggle="modal" data-bs-target="#locationModal">Change Location</a>
-                                <input type="hidden" name="lat" id="lat">
-                                <input type="hidden" name="lon" id="lon">
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 mt-4">
-								<div class="form-outline">
-									<label for="files">Change Photo</label>
-									<input type="file" name="files" id="files" class="form-control form-control-md">
-									<input type="hidden" name="fname" value="{{ merch[8] }}">
-								</div>
-					</div>
-				</div>
-
-				<div class="row px-3 mb-4">
-					<div>
-						<div class="d-flex justify-content-center">
-							<input class="btn btn-outline-danger btn-md" type="submit" value="Submit Changes" style="width:25%;"/>
-						</div>
-					</div>
-				</div>
-			</form>
-		  </div>
-		</div>
-	  </div>
-	</div>
 </div>
 
 <!-- ------------------------LOCATION MODAL-------------------- -->

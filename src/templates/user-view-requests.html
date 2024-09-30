@@ -1,0 +1,88 @@
+{% extends "design-user.html" %}
+
+{% block title%}My Rentals @Realtor {% endblock %}
+
+
+{% block body %}
+<div class="container-fluid">
+  <div class="main-body d-flex justify-content-center">
+    <div class="col-md-6 my-3">
+      <div class="card mt-3">
+        <div class="card-body">
+          <table class="table table-striped table-hover">
+            {% if item == 'plot' %}
+            <thead>
+              <div class="d-flex justify-content-between align-items-center my-2">
+                <h3 class="m-0">Purchase Requests</h3>
+                <a href="/last_url" class="btn btn-outline-secondary">Back</a>
+             </div>
+              <tr>
+                <th>#</th>
+                <th>Property Name</th>
+                <th>Buyer Name</th>
+                <th>Date</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% if res %}
+              {% for plot in res %}
+              <tr>
+                <th>{{ loop.index }}</th>
+                <td>{{ plot[0] }}</td>
+                <td>{{ plot[1] }}</td>
+                <td>{{ plot[5] }} / {{ plot[6] }}</td>
+                <td><a href="/userAcceptRequest/plot/{{ plot[3] }}/{{ plot[0] }}/{{ plot[1] }}/{{plot[4] }}" style="color: green;" onclick="return confirm('Are you sure?')">Accept</a> / <a href="#" style="color: brown;" onclick="return confirm('Are you sure?')">Remove</a></td>
+              </tr>
+              {% endfor %}
+              {% else %}
+              <tr>
+                <td colspan="5" align="center"><b>No Requests Found</b></td>
+              </tr>
+              {% endif %}
+            </tbody>
+            {% elif item == 'rental' %}
+            <thead>
+              <div class="d-flex justify-content-between align-items-center my-2">
+                <h3 class="m-0">Rental Requests</h3>
+                <a href="/last_url" class="btn btn-outline-secondary">Back</a>
+             </div>
+              <tr>
+                <th>#</th>
+                <th>Rental Name</th>
+                <th>Tenant Name</th>
+                <th>Date</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% if res %}
+              {% for rental in res %}
+              <tr>
+                <th>{{ loop.index }}</th>
+                <td>{{ rental[0] }}</td>
+                <td>{{ rental[1] }}</td>
+                <td>{{ rental[5] }} / {{ rental[6] }}</td>
+                <td>
+                  <a href="/userAcceptRequest/rental/{{ rental[3] }}/{{ rental[0] }}/{{ rental[1] }}/{{rental[4] }}" 
+                  style="color: green;" onclick="return confirm('Are you sure?')">Accept</a>
+                   / 
+                   <a href="/userRejectRequest/rental/{{ rental[3] }}/{{ rental[4] }}" style="color: brown;" onclick="return confirm('Are you sure?')">Remove</a></td>
+              </tr>
+              {% endfor %}
+              {% else %}
+              <tr>
+                <td colspan="5" align="center"><b>No Requests Found</b></td>
+              </tr>
+              {% endif %}
+            </tbody>
+            {% endif %}
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

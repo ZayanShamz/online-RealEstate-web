@@ -22,13 +22,13 @@
                      <input type="hidden" name="lati" id="lati" value="0"/>
                      <input type="hidden" name="longi" id="longi" value="0"/>
                     <div class="mb-3">
-                        <input type="text" name="dealerName" class="inputs form-control" placeholder="Name">
+                        <input type="text" name="dealerName" id="dealerName" class="inputs form-control" placeholder="Name">
                     </div>
                     <div class="mb-3">
-                        <input type="text" name="dealerEmail" class="inputs form-control" placeholder="Email">
+                        <input type="text" name="dealerEmail" id="dealerEmail" class="inputs form-control" placeholder="Email">
                     </div>
                     <div class="mb-3">
-                        <input type="text" name="dealerPhone" class="inputs form-control" placeholder="Phone Number">
+                        <input type="text" name="dealerPhone" id="dealerPhone" class="inputs form-control" placeholder="Phone Number">
                     </div>
                     <div class="row mb-2">
                          <div class="col-md-3 my-2">
@@ -52,14 +52,14 @@
                          </div>
                     </div>
                     <div class="mb-3">
-                       <input type="date" name="dealerDob" class="inputs form-control">
+                       <input type="date" name="dealerDob" id="dealerDob"  class="inputs form-control">
                     </div>
                     <div class="mb-4">
-                        <input type="text" name="dealerPassword" class="inputs form-control" placeholder="password">
+                        <input type="text" name="dealerPassword" id="dealerPassword" class="inputs form-control" placeholder="password">
                     </div>
 
                     <div class="form-group mb-3 d-flex justify-content-center">
-                        <button id="login-btn" type="submit" class="btn btn-primary btn-block">Sign-Up</button>
+                        <button id="login-btn" type="submit" class="btn btn-primary btn-block" onclick="return valid()">Sign-Up</button>
                     </div>
                     <div class="form-group d-flex justify-content-center">
                         <a id="login-link" href="/">Already Registered?</a>
@@ -68,7 +68,42 @@
             </div>
      </div>
 
-
+     <script type="text/javascript">
+        function valid()
+        {
+            if(document.getElementById("dealerName").value=="")
+            {
+                alert("Please Enter Your Name!");
+                document.getElementById("dealerName").focus();
+                return false;
+             }
+        
+            if(document.getElementById("dealerEmail").value=="")
+            {
+                alert("Please FEnter Your Email!");
+                document.getElementById("dealerEmail").focus();
+                return false;
+             }
+            if(document.getElementById("dealerPhone").value=="")
+               {
+                 alert("Please Enter Your Phone Number");
+                 document.getElementById("dealerPhone").focus();
+                 return false;
+             }
+            if(document.getElementById("dealerDob").value=="")
+            {
+                alert("Please Enter Date of Birth");
+                document.getElementById("dealerDob").focus();
+                return false;
+             }
+             if(document.getElementById("dealerPassword").value=="")
+            {
+                alert("Please Enter Your Password!");
+                document.getElementById("dealerPassword").focus();
+                return false;
+             }
+        }
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

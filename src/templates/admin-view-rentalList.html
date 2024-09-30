@@ -35,7 +35,7 @@
                      </div>
                      <div class="row px-3 mb-2">
                          <div class="col-md-8">
-                             Owner : <b>{{ i[15] }}</b>
+                             Owner : <b>{{ i[12] }}</b>
                          </div>
                          <div class="col-md-4">
                              Rent : <span class="text text-secondary">Rs. {{ i[5] }}</span>
@@ -43,18 +43,28 @@
                      </div>
                      <div class="row px-3 mb-2">
                          <div class="col-md-8">
-                             Type : <span class="text text-secondary">{{ i[6] }}</span>
+                             Type : <span class="text text-secondary">{{ i[4] }}</span>
                          </div>
                          <div class="col-md-4">
-                             Area : <span class="text text-secondary">{{ i[4] }} sqrft</span>
+                             Area : <span class="text text-secondary">{{ i[3] }} sqrft</span>
                          </div>
                      </div>
                      <div class="row px-3 mb-1">
                          <div class="col-md-7">
-                             Address : <span class="text text-secondary" title="{{ i[3] }}">{{ i[13] }}, {{ i[14] }}</span>
+                            Address : 
+                            <span class="text text-secondary" title="{{ i[6] }}">
+                                {% if i[7] and i[8] %}
+                                    {{ i[7] }}, {{ i[8] }}
+                                {% else %}
+                                    {{ i[6] }}
+                                {% endif %}
+                            </span>
                          </div>
                          <div class="col-5 d-flex justify-content-center">
-                             <a class="btn btn-danger btn-sm" href="/deleteRental/{{ i[0] }}">Remove</a>
+                             <a class="btn btn-danger btn-sm" href="/deleteRental/{{ i[0] }}"
+                             onclick="event.stopPropagation(); 
+                             return confirm('Are you sure you want to remove this rental')">
+                             Remove</a>
                          </div>
                      </div>
                  </div>

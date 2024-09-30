@@ -94,15 +94,15 @@
 
 				<hr>
 
-				<div class="row px-3 my-3">
+				<div class="row px-3 my-3" id="usr_cntrols">
 					<div class="col-sm-4 d-flex justify-content-end">
-                       <a href="/viewEngineers" class="btn btn-outline-secondary">Back</a>
+                       <a href="/viewEngineers" class="btn user-back">Back</a>
                     </div>
 					<div class="col-sm-4 d-flex justify-content-center">
 					  <a href="/editEngineer/{{ eng[0] }}" class="btn btn-outline-secondary">Edit</a>
 					</div>
 					<div class="col-sm-4">
-					  <a href="/deleteEngineer/{{ eng[0] }}" class="btn btn-outline-danger"
+					  <a href="/deleteEngineer/{{ eng[0] }}" class="btn btn-danger"
 					  onclick="return confirm('Remove this Engineer?');">Delete</a>
 					</div>
 				  </div>

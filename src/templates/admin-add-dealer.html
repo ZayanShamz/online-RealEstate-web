@@ -1,5 +1,5 @@
 {% extends "design.html" %}
-{% block title%} Add Dealer {% endblock %}
+{% block title%} Add Dealer @realtor{% endblock %}
 {% block body %}
 
 <div class="d-flex justify-content-center m-5">
@@ -8,13 +8,13 @@
             <h2 class="d-flex justify-content-center" style="color:#F45B69;cursor:default;">Add Dealer</h2>
 
             <div class="mx-2 mt-4">
-                <input type="text" name="dealerName" class="inputs form-control" placeholder="Name">
+                <input type="text" name="dealerName" class="inputs form-control" placeholder="Name" required>
             </div>
             <div class="form-group mx-2 my-3">
-                <input type="text" name="dealerEmail" class="inputs form-control" placeholder="Email">
+                <input type="email" name="dealerEmail" class="inputs form-control" placeholder="Email" required>
             </div>
             <div class="form-group mx-2 my-3">
-                <input type="text" name="dealerPhone" class="inputs form-control" placeholder="Phone Number ">
+                <input type="number" name="dealerPhone" class="inputs form-control" placeholder="Phone Number" required>
             </div>
             <div class="row mx-2 my-3">
                 <div class="col-md-3">
@@ -34,17 +34,17 @@
                 </div>
             </div>
             <div class="form-group mx-2 my-3">
-                <input type="date" name="dealerDob" class="inputs form-control" placeholder="DOB">
+                <input type="date" name="dealerDob" class="inputs form-control" placeholder="DOB" required>
             </div>
             <div class="form-group mx-2 my-3">
-                <input type="text" name="dealerPassword" class="inputs form-control" placeholder="password">
+                <input type="text" name="dealerPassword" class="inputs form-control" placeholder="password" required>
             </div>
-            <div class="row mx-2 mt-3">
+            <div class="row mx-2 mt-3" id="usr_cntrols">
               <div class="col-md-6 d-flex justify-content-center">
-                <div onclick="goBack()" class="btn btn-outline-secondary">Back</div>
+                <div onclick="goBack()" class="btn user-back">Back</div>
               </div>
               <div class="col-md-6 d-flex justify-content-center">
-                <button type="submit" id="login-btn" class="btn btn-warning btn-block">SUBMIT</button>
+                <button type="submit" class="btn user-btns btn-block">SUBMIT</button>
               </div>
             </div>
         </form>

@@ -18,12 +18,12 @@
 				  <div class="col-md-6">
 					  <div class="form-outline">
 						  <input type="text" id="ename" name="ename" class="inputs form-control"
-								 placeholder="Name"/>
+								 placeholder="Name" required />
 					  </div>
 				  </div>
 				  <div class="col-md-6">
 					  <div class="form-outline">
-						  <input type="date" name="dob" id="dob" class="inputs form-control" placeholder="DOB">
+						  <input type="date" name="dob" id="dob" class="inputs form-control" placeholder="DOB" required /> 
 					  </div>
 				  </div>
 			  </div>
@@ -31,13 +31,13 @@
 			  <div class="row mb-4 px-3">
 				  <div class="col-md-6">
 					  <div class="form-outline">
-						  <input type="text" id="email" name="email" class="inputs form-control"
-								 placeholder="Email"/>
+						  <input type="email" id="email" name="email" class="inputs form-control"
+								 placeholder="Email" required />
 					  </div>
 				  </div>
 				  <div class="col-md-6">
-					  <input type="text" id="phone" name="phone" class="inputs form-control"
-							 placeholder="phone"/>
+					  <input type="number" id="phone" name="phone" class="inputs form-control"
+							 placeholder="phone" required/>
 				  </div>
 			  </div>
 
@@ -62,7 +62,7 @@
 
 				  <div class="col-md-6">
 					  <div class="form-outline">
-						  <select class="inputs form-control" id="disc" name="disc">
+						  <select class="inputs form-control" id="disc" name="disc" required>
 							  <option value="">Select Discipline</option>
 							  <option value="civil engineer">Civil Engineering</option>
 							  <option value="mechanical engineer">Mechanical Engineering</option>
@@ -87,10 +87,10 @@
 
 			  <div class="row mb-4 px-3">
 				  <div class="col-md-3">
-						 <input type="text" name="lat" id="lat" class="inputs form-control" placeholder="Latitude">
+						 <input type="text" name="lat" id="lat" class="inputs form-control" placeholder="Latitude" required />
 				  </div>
 				  <div class="col-md-3">
-					   <input type="text" name="lon" id="lon" class="inputs form-control" placeholder="Longitude"/>
+					   <input type="text" name="lon" id="lon" class="inputs form-control" placeholder="Longitude" required/>
 				  </div>
 
 				   <div class="col-md-6">
@@ -100,12 +100,12 @@
 				  </div>
 			  </div>
 
-			  <div class="row mb-4 px-3">
+			  <div class="row mb-4 px-3" id="usr_cntrols">
 				<div class="col-md-6 d-flex justify-content-end">
-				  <div onclick="goBack()" class="btn btn-outline-secondary">Back</div>
+				  <div onclick="goBack()" class="btn user-back">Back</div>
 				</div>
 				<div class="col-md-6 d-flex justify-content-start">
-				  <button type="submit" id="login-btn" class="btn btn-warning btn-block">SUBMIT</button>
+				  <button type="submit" id="login-btn" class="btn user-btns btn-block">ADD</button>
 				</div>
 			  </div>
 		  </form>

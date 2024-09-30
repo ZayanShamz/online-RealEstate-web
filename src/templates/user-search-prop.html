@@ -3,23 +3,33 @@
 
 {% block body %}
 <div class="container py-4 h-100">
-	<div class="row justify-content-center align-items-center h-100" id="usr_controls">
-		<div class="col-12 col-lg-9 col-xl-7">
+	<div class="row justify-content-center align-items-center h-100" id="usr_cntrols">
+		<div class="col-12 col-lg-9 col-xl-7 p-3 outer-container">
             <div class="tabs-container">
-				<button class="tab active" onclick="openTab('tab1')">Plots</button>
-                <button class="tab" onclick="openTab('tab2')">Rentals</button>
+				<button class="tab active" onclick="openTab(event, 'tab1')">Properties</button>
+                <button class="tab" onclick="openTab(event, 'tab2')">Rentals</button>
             </div>
-			<div class="tab-content" id="tab1-content">
-				<h2 class="py-3">Find Plots</h2>
-                <form action="/plotSearch" method="post" role="search">
+
+			<div class="tab-content" id="tab1-content">			
+                <form action="/plotSearch" method="post" role="search" onsubmit="return validatePlotSearchForm(event)">
+					<button type="submit" name="sub" value="all" class="my-3" style="color: #456990; background: none; border: none; padding: 0; font-size: inherit; cursor: pointer;">
+						<h4>All Properties</h4>
+					</button>
+
+					<div class="row d-flex justify-content-center">
+						<div class="col-md-6 d-flex justify-content-center">
+							<h4 class="mb-2 pb-md-0">Or</h4>
+						</div>
+					</div>
+					
 					<div class="row d-flex justify-content-center">
 						<div class="col-md-2 mb-1">
 							<div class="form-outline"></div>
 						</div>
 						<div class="col-md-6 mb-1">
 							<div class="form-outline">
-								<input class="form-control me-2" type="search" name="pname"
-									   placeholder="Enter Plot Name or Place" aria-label="Search">
+								<input class="form-control me-2" type="search" name="pname" id="pname"
+									   placeholder="Enter Property Name or Place" aria-label="Search">
 							</div>
 						</div>
 						<div class="col-md-4 d-flex justify-content-start mb-2">
@@ -30,28 +40,40 @@
 					</div>
 
 					<div class="row d-flex justify-content-center">
-						<div class="col-md-6 d-flex justify-content-center">
-							<h4 class="mb-2 pb-md-0">Or</h4>
-						</div>
+						<text class="h4 m-0 align-items-center">Or</text>
+					</div>
+					<div class="row d-flex justify-content-center align-items-start mb-2">
+						<span class="text-secondary small">Select at least one.</span>
 					</div>
 
+
 					<div class="row d-flex justify-content-center">
+						<div class="col-md-2 mb-1">
+							<div class="form-outline"></div>
+						</div>
 						<div class="col-md-6 mb-4 pb-2">
 							<div class="form-outline">
-								<select class="form-control form-control-md" name="type">
-									<option value="">Select Plot Type</option>
+								<select class="form-control form-control-md" name="type" id="type">
+									<option value="any">Select Property Type</option>
 									<option value="land">Land</option>
 									<option value="building">Building</option>
 									<option value="home">Home</option>
 								</select>
 							</div>
 						</div>
+						<div class="col-md-4 d-flex justify-content-start mb-2">
+							<div class="form-outline">
+							</div>
+						</div>
 					</div>
 
 					<div class="row d-flex justify-content-center">
+						<div class="col-md-2 mb-1">
+							<div class="form-outline"></div>
+						</div>
 						<div class="col-md-6 mb-4 pb-2">
 							<div class="form-outline">
-								<select class="form-control form-control-md" name="price">
+								<select class="form-control form-control-md" name="price" id="price">
 									<option value="0 AND 999999999">Select price range (in rupees)</option>
 									<option value="0 AND 100000">~1 lakh</option>
 									<option value="100000 AND 200000">1 lakh &emsp; - &emsp;2 lakhs</option>
@@ -71,12 +93,20 @@
 								</select>
 							</div>
 						</div>
+						<div class="col-md-4 d-flex justify-content-start mb-2">
+							<div class="form-outline">
+								<button class="btn user-btns ms-2" type="submit" name="sub" value="srch2">Search</button>
+							</div>
+						</div>
 					</div>
 
 					<div class="row d-flex justify-content-center">
+						<div class="col-md-2 mb-1">
+							<div class="form-outline"></div>
+						</div>
 						<div class="col-md-6 mb-3 pb-2">
 							<div class="form-outline">
-								<select class="form-control form-control-md" name="area">
+								<select class="form-control form-control-md" name="area" id="parea">
 									<option value="0 AND 999999999">Select Area (in sqrft)</option>
 									<option value="0 AND 3000">< 3000</option>
 									<option value="3000 AND 5000">3000 - 5000</option>
@@ -89,30 +119,44 @@
 								</select>
 							</div>
 						</div>
+						<div class="col-md-4 d-flex justify-content-start mb-2">
+							<div class="form-outline">
+							</div>
+						</div>
 					</div>
 
 					<div class="row">
-						<div>
-							<div class="d-flex justify-content-center">
-								<div class="form-outline">
-									<button class="btn user-btns" type="submit" name="sub" value="srch2">Find plot</button>
-								</div>
+						<div class="d-flex justify-content-center">
+							<div class="form-outline">
+								<button class="btn user-back" type="button" onclick="window.location='/userHome'">Back</button>
 							</div>
 						</div>
 					</div>
 				</form>
             </div>
 
+			<!---------------------- Rental Form --------------------------------->
             <div class="tab-content" id="tab2-content" style="display: none;">
-                <h2 class="py-3">Find Rentals</h2>
                 <form action="/rentalSearch" method="post" role="search">
+
+					<button type="submit" name="btnclick" value="all" class="my-3" 
+					style="color: #456990; background: none; border: none; padding: 0; font-size: inherit; cursor: pointer;">
+						<h4>All Rentals</h4>
+					</button>
+
+					<div class="row d-flex justify-content-center">
+						<div class="col-md-6 d-flex justify-content-center">
+							<h4 class="mb-2 pb-md-0">Or</h4>
+						</div>
+					</div>
+
 					<div class="row d-flex justify-content-center">
 						<div class="col-md-2 mb-1">
 							<div class="form-outline"></div>
 						</div>
 						<div class="col-md-6 mb-1">
 							<div class="form-outline">
-								<input class="form-control me-2" type="search" name="rname" aria-label="Search"
+								<input class="form-control me-2" type="search" name="rname" id="rname" aria-label="Search"
 									   placeholder="Enter Rental Name or Place">
 							</div>
 						</div>
@@ -124,16 +168,19 @@
 					</div>
 
 					<div class="row d-flex justify-content-center">
-						<div class="col-md-6 d-flex justify-content-center">
-							<h4 class="my-2">Or</h4>
-						</div>
+						<text class="h4 m-0 align-items-center">Or</text>
+					</div>
+					<div class="row d-flex justify-content-center align-items-start mb-2">
+						<span class="text-secondary small">Select at least one.</span>
 					</div>
 
 					<div class="row d-flex justify-content-center">
+						<div class="col-md-2">
+						</div>
 						<div class="col-md-6 mb-4 pb-2">
 						  <div class="form-outline">
 							 <select class="form-control form-control-md" name="storey" id="storey">
-								 <option value="None">Select Storey Type</option>
+								 <option value="any">Select Storey Type</option>
 								 <option value="Single Storey Single Room">Single Storey Single Room</option>
 								 <option value="Single Storey Multi Rooms">Single Storey Multi Rooms</option>
 								 <option value="Multi Storey Single Rooms">Multi Storey Single Rooms</option>
@@ -141,12 +188,16 @@
 							 </select>
 						  </div>
 						</div>
+						<div class="col-md-4">
+						</div>
 					</div>
 
 					<div class="row d-flex justify-content-center">
+						<div class="col-md-2">
+						</div>
 						<div class="col-md-6 mb-4 pb-2">
 							<div class="form-outline">
-								<select class="form-control form-control-md" name="rprice">
+								<select class="form-control form-control-md" name="rprice" id="rprice">
 									<option value="0 AND 999999999">Select Rent range (in rupees)</option>
 									<option value="0 AND 100000">~1 lakh</option>
 									<option value="100000 AND 200000">1 lakh &emsp; - &emsp;2 lakhs</option>
@@ -166,12 +217,19 @@
 								</select>
 							</div>
 						</div>
+						<div class="col-md-4 d-flex justify-content-start ">
+							<div class="form-outline">
+								<button class="btn user-btns" type="submit" name="btnclick" value="srch2">Find Rental</button>
+							</div>
+						</div>
 					</div>
 
 					<div class="row d-flex justify-content-center">
+						<div class="col-md-2">
+						</div>
 						<div class="col-md-6 mb-3 pb-2">
 							  <div class="form-outline">
-								  <select class="form-control form-control-md" name="rarea">
+								  <select class="form-control form-control-md" name="rarea" id="rarea">
 									  <option value="0 AND 999999999">Select Area (in sqrft)</option>
 									  <option value="0 AND 3000">< 3000</option>
 									  <option value="3000 AND 5000">3000 - 5000</option>
@@ -184,16 +242,16 @@
 								  </select>
 							  </div>
 						</div>
+						<div class="col-md-4">
+						</div>
 					</div>
 
 					<div class="row">
-						  <div>
-							 <div class="d-flex justify-content-center">
-								<div class="form-outline">
-								  <button class="btn user-btns" type="submit" name="btnclick" value="srch2">Find Rental</button>
-							  </div>
-							 </div>
-						  </div>
+						<div class="d-flex justify-content-center">
+							<div class="form-outline">
+								<button class="btn user-back" type="button" onclick="window.location='/userHome'">Back</button>
+							</div>
+						</div>
 					</div>
 				</form>
             </div>
@@ -202,30 +260,60 @@
 </div>
 
 <script>
-function openTab(tabName) {
-    var i, tabContent;
+	function openTab(event, tabName) {
+		var i, tabContent, tabs;
+	
+		// Hide all tab content
+		tabContent = document.getElementsByClassName("tab-content");
+		for (i = 0; i < tabContent.length; i++) {
+			tabContent[i].style.display = "none";
+		}
+	
+		// Deactivate all tabs
+		tabs = document.getElementsByClassName("tab");
+		for (i = 0; i < tabs.length; i++) {
+			tabs[i].className = tabs[i].className.replace(" active", "");
+		}
+	
+		// Show the selected tab content
+		document.getElementById(tabName + "-content").style.display = "block";
+	
+		// Activate the clicked tab
+		event.currentTarget.className += " active";
+	}
+	
+	// Initially open the first tab
+	document.addEventListener("DOMContentLoaded", function() {
+		document.getElementsByClassName("tab")[0].click();
+	});
 
-    // Hide all tab content
-    tabContent = document.getElementsByClassName("tab-content");
-    for (i = 0; i < tabContent.length; i++) {
-        tabContent[i].style.display = "none";
-    }
+	// ------ Property form validation --------------------------------
+	function validatePlotSearchForm(event) {
+		var clickedButton = event.submitter;
 
-    // Deactivate all tabs
-    tabs = document.getElementsByClassName("tab");
-    for (i = 0; i < tabs.length; i++) {
-        tabs[i].className = tabs[i].className.replace(" active", "");
-    }
+		// Validate based on which button was clicked
+		if (clickedButton.value === "srch") {
+			var propertyName = document.getElementById("pname").value;
+			if (propertyName.trim() === "") {
+				alert("Please enter a Property Name or Place!");
+				document.getElementById("pname").focus();
+				return false;
+			}
+		} else if (clickedButton.value === "srch2") {
+			var propertyType = document.getElementById("type").value;
+			var priceRange = document.getElementById("price").value;
+			var propertyArea = document.getElementById("parea").value;
 
-    // Show the selected tab content
-    document.getElementById(tabName + "-content").style.display = "block";
+			
+			if (propertyType === "any" && priceRange === "0 AND 999999999" && propertyArea === "0 AND 999999999") {
+				alert("Please select at least one search criteria: Property Type, Price Range, or Area.");
+				document.getElementById("type").focus();
+				return false;
+			}
+		}
 
-    // Activate the clicked tab
-    event.currentTarget.className += " active";
-}
-
-// Initially open the first tab
-openTab("tab1");
+		return true;
+	}
 </script>
 
 {% endblock %}

@@ -20,7 +20,7 @@
     {% if dealers %}
     <h3 class="my-3" align="center">RealEstate Dealers</h3>
     {% for i in dealers %}
-    <div class="col-sm-12" onclick="window.location='/viewDealer/{{ i[1] }}'" id="login-box">
+    <div class="col-sm-12 my-4" onclick="window.location='/viewDealer/{{ i[1] }}'" id="login-box">
       <div class="p-3" style="cursor:pointer;">
           <div class="row">
               <div class="col-4">
@@ -37,7 +37,8 @@
                   <small>Email : <span class="text text-secondary">{{ i[3] }}</span></small>
               </div>
               <div class="col-3 mt-3">
-                  <a class="btn btn-danger btn-sm" href="/removeDealer/{{ i[1] }}">Remove Dealer</a>
+                  <a class="btn btn-danger btn-sm" href="/removeDealer/{{ i[1] }}"  onclick="event.stopPropagation(); 
+                       return confirm('Are you sure you want to remove this Dealer?');">Remove Dealer</a>
               </div>
           </div>
       </div>

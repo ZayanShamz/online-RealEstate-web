@@ -72,9 +72,14 @@
 
 
 				  <div class="row mb-4 px-3">
-					  <div>
+					  <div class="col-md-6 d-flex justify-content-center">
+						<div class="d-flex justify-content-center">
+							<div onclick="goBack()" class="btn btn-outline-secondary">Cancel</div>
+						</div>
+					  </div>	
+					  <div class="col-md-6 d-flex justify-content-center">
 						 <div class="d-flex justify-content-center">
-							<input class="btn" id="login-btn" type="submit" value="Submit" onclick="return valid()" style="width:25%;"/>
+							<input class="btn" id="login-btn" type="submit" value="Submit" onclick="return valid()"/>
 						 </div>
 					  </div>
 				  </div>
@@ -83,6 +88,43 @@
 		</div>
 	</div>
 
+
+<script type="text/javascript">
+	function valid()
+	{
+		if(document.getElementById("rname").value=="")
+		{
+			alert("Please Enter Rental Name!");
+			document.getElementById("rname").focus();
+			return false;
+		 }
+	
+		if(document.getElementById("area").value=="")
+		{
+			alert("Please Fill The Area Column!");
+			document.getElementById("area").focus();
+			return false;
+		 }
+		if(document.getElementById("rent").value=="")
+		   {
+			 alert("Enter Phone Number");
+			 document.getElementById("rent").focus();
+			 return false;
+		 }
+		if(/[^0-9]/gi.test(document.getElementById("rent").value))
+		{
+			alert("Please enter amount in digits only");
+			document.getElementById("rent").focus();
+			return false;
+		}
+		if(document.getElementById("lon").value=="")
+		{
+			alert("Location not Selected");
+			document.getElementById("lon").focus();
+			return false;
+		 }
+	}
+</script>
 
 <!-- ------------------------LOCATION MODAL-------------------- -->
 
@@ -141,43 +183,6 @@
 </script>
 <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJKQEiMYJvUzXzKeaGIK0754YOuTad_bQ&callback=myMap">
-</script>
-
-<script type="text/javascript">
-function valid()
-{
-	if(document.getElementById("rname").value=="")
-	{
-		alert("Please Enter Rental Name!");
-		document.getElementById("rname").focus();
-    	return false;
- 	}
-
-	if(document.getElementById("area").value=="")
-	{
-		alert("Please Fill The Area Column!");
-		document.getElementById("area").focus();
-    	return false;
- 	}
-	if(document.getElementById("rent").value=="")
-   	{
-     	alert("Enter Phone Number");
-     	document.getElementById("rent").focus();
-     	return false;
- 	}
-	if(/[^0-9]/gi.test(document.getElementById("rent").value))
-	{
-		alert("Please enter amount in digits only");
-		document.getElementById("rent").focus();
-		return false;
-	}
-	if(document.getElementById("lon").value=="")
-	{
-		alert("Location not Selected");
-		document.getElementById("lon").focus();
-    	return false;
- 	}
-}
 </script>
 
 {% endblock %}

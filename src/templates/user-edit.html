@@ -1,22 +1,22 @@
-{% extends "design.html" %}
-{% block title%}Edit Dealer{% endblock %}
+{% extends "design-user.html" %}
+{% block title%}Profile Edit{% endblock %}
 {% block body %}
 
 <div class="container py-4 h-100">
 	<div class="row justify-content-center align-items-center h-100">
 		<div class="col-12 col-xl-6 m-3" id="login-box">
             <div class="d-flex justify-content-center">
-			  <h3 class="mb-4 pb-2 mt-3" style="color:#F45B69;cursor:default;">Edit Dealer Details</h3>
+			  <h3 class="mb-4 pb-2 mt-3" style="color:#F45B69;cursor:default;">Edit Your Profile</h3>
 			</div>
 
-            <form action="/editDealer/{{ dealer[1] }}" method="post" enctype="multipart/form-data">
+            <form action="/userEdit" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="dealer" value="{{ dealer[0] }}">
                 <div class="row  mb-4 px-3">
                   <div class="col-md-5">
                     <h6 class="mb-0">Name</h6>
                   </div>
                   <div class="col-md-7 ">
-                     <input type="text" name="dealerName" class="inputs form-control" value="{{ dealer[2] }}" required/>
+                     <input type="text" name="dealerName" class="inputs form-control" value="{{ dealer[2] }}"/>
                   </div>
                 </div>
 
@@ -25,7 +25,7 @@
                     <h6 class="mb-0">Email</h6>
                   </div>
                   <div class="col-md-7">
-                    <input type="email" name="dealerEmail" class="inputs form-control" value="{{ dealer[3] }}" required/>
+                    <input type="text" name="dealerEmail" class="inputs form-control" value="{{ dealer[3] }}"/>
                   </div>
                 </div>
 
@@ -34,7 +34,7 @@
                     <h6 class="mb-0">Phone</h6>
                   </div>
                   <div class="col-md-7">
-                    <input type="text" name="dealerPhone" class="inputs form-control" value="{{ dealer[4] }}" required/>
+                    <input type="text" name="dealerPhone" class="inputs form-control" value="{{ dealer[4] }}"/>
                   </div>
                 </div>
 
@@ -69,17 +69,17 @@
                   </div>
                   <div class="col-md-7">
                     <div class="form-outline">
-                        <input type="date" name="dealerDob" class="inputs form-control" value="{{ dealer[6] }}" required/>
+                        <input type="date" name="dealerDob" class="inputs form-control" value="{{ dealer[6] }}">
                     </div>
                   </div>
                 </div>
 
-                <div class="row mb-4 px-3" id="usr_cntrols">
-                    <div class="col-md-6 d-flex justify-content-end">
+                <div class="row mb-4 px-3">
+                    <div class="col-md-6 d-flex justify-content-end" id="usr_cntrols">
                         <div onclick="goBack()" class="btn user-back">Back</div>
                     </div>
                     <div class="col-md-6 d-flex justify-content-start">
-                        <button type="submit" id="login-btn" class="btn user-btns">SUBMIT CHANGES</button>
+                        <button type="submit" id="login-btn" class="btn btn-outline-danger">SUBMIT CHANGES</button>
                     </div>
                 </div>
             </form>

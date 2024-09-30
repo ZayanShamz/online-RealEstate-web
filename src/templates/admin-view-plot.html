@@ -10,34 +10,20 @@
 			<div class="card-body">
 			  <div class="d-flex flex-column align-items-center text-center">
 				  <div class="container" style="width:90%;">
-                  		{% if plot[9] == 1 %}
-					  <img src="/static/images/plot/{{plot[7]}}-1{{plot[8]}}" class="d-block w-100" alt="..." style="width:100%; height:auto;">
-                  		{% else %}
-					  <div id="plotCarousel" class="carousel carousel-dark slide">
-						  <div class="carousel-inner">
-							  {% if plot[9] == 2 %}
-							  <div class="carousel-item active">
-								  <img src="/static/images/plot/{{plot[7]}}-1{{plot[8]}}" class="d-block w-100" alt="..."
-									   style="width:100%; height:auto;">
-							  </div>
-							  <div class="carousel-item">
-								  <img src="/static/images/plot/{{plot[7]}}-2{{plot[8]}}" class="d-block w-100" alt="..."
-									   style="width:100%; height:auto;">
-							  </div>
-							  {% endif %}
-							  {% if plot[9] > 2 %}
-							  <div class="carousel-item active">
-								  <img src="/static/images/plot/{{plot[7]}}-1{{plot[8]}}" class="d-block w-100" alt="..."
-									   style="width:70%; height:auto;">
-							  </div>
-							  {% for k in range(2,plot[9]+1) %}
-							  <div class="carousel-item">
-								  <img src="/static/images/plot/{{plot[7]}}-{{k}}{{plot[8]}}" class="d-block w-100" alt="..."
-									   style="width:70%; height:auto;">
-							  </div>
-							  {% endfor %}
-							  {% endif %}
-						  </div>
+					{% if plot[9] == 1 %}
+					<img src="/static/images/plot/{{ pics[0] }}" class="d-block w-100" alt="..." style="width:40%; height:auto;">
+					{% else %}
+					<div id="plotCarousel" class="carousel carousel-dark slide" data-bs-ride="carousel">
+						<div class="carousel-inner">
+							<div class="carousel-item active">
+								<img src="/static/images/plot/{{ pics[0] }}" class="d-block w-100" alt="active image" style="width:40%; height:auto;">
+							</div>
+							{% for image in pics[1:] %}
+							<div class="carousel-item">
+								<img src="/static/images/plot/{{ image }}" class="d-block w-100" alt="carousel image" style="width:40%; height:auto;">
+							</div>
+							{% endfor %}
+						</div>
 						  <button class="carousel-control-prev" type="button" data-bs-target="#plotCarousel"
 								  data-bs-slide="prev">
 							  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -67,7 +53,7 @@
 				  <div class="col-sm-8 text-secondary">
 					  <span class="d-block text-black-50 ms-1">
 						  <a href="https://www.google.com/maps/search/?api=1&query={{ lat }}%2C{{ lon }}"
-							 title="Open Maps" target="_blank" style="text-decoration: none;color: #575f5a;font-size:14px;">{{ plot[3] }}</a>
+							 title="Open Maps" target="_blank" style="text-decoration: none;color: #575f5a;font-size:14px;">{{ plot[6] }}</a>
 					  </span>
 				  </div>
 			  </div>
@@ -80,7 +66,7 @@
 					  <h6 class="mb-0">:</h6>
 				  </div>
 				  <div class="col-sm-8 text-secondary">
-					 {{ plot[4] }} sqrft
+					 {{ plot[3] }} sqrft
 				  </div>
 			  </div>
 
@@ -92,7 +78,7 @@
 					  <h6 class="mb-0">:</h6>
 				  </div>
 				  <div class="col-sm-8 text-secondary">
-					{{ plot[5] }}
+					{{ plot[4] }}
 				  </div>
 			  </div>
 
@@ -104,7 +90,7 @@
 					  <h6 class="mb-0">:</h6>
 				  </div>
 				<div class="col-sm-8 text-secondary">
-				  Rs. {{ plot[6] }}
+				  Rs. {{ plot[5] }}
 				</div>
 			  </div>
 
@@ -116,7 +102,7 @@
 					  <h6 class="mb-0">:</h6>
 				  </div>
 				<div class="col-sm-8 text-secondary">
-				  {{ plot[16] }}
+				  {{ plot[13] }}
 				</div>
 			  </div>
 
@@ -129,7 +115,7 @@
 				  </div>
 				<div class="col-sm-8 te xt-secondary">
 				  <a href="https://mail.google.com/mail/?view=cm&fs=1&to={{ plot[17] }}.com" target="_blank"
-				 title="Open in Gmail" style="text-decoration:none;color:black;">{{ plot[17] }}</a>
+				 title="Open in Gmail" style="text-decoration:none;color:black;">{{ plot[14] }}</a>
 				</div>
 			  </div>
 

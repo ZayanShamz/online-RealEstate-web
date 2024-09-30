@@ -36,35 +36,35 @@
 </head>
 
 <body>
-        <div class="vh-100 d-flex justify-content-center align-items-center ">
-            <div class="col-md-5 p-5" id="login-box">
-                <h2 class="text-center mb-4" style="color:#F45B69;cursor:default;">RealEstate</h2>
-                <form action="/" method="post">
-                     <input type="hidden" name="lati" id="lati" value="0"/>
-                     <input type="hidden" name="longi" id="longi" value="0"/>
-                    <div class="mb-3">
-                        <label>Username</label>
-                        <input type="text" name="email" id="email" class="inputs form-control">
+    <div class="vh-100 d-flex justify-content-center align-items-center ">
+        <div class="col-md-5 p-5" id="login-box">
+            <h2 class="text-center mb-4" style="color:#F45B69;cursor:default;">Realtor</h2>
+            <form action="/" method="post">
+                  <input type="hidden" name="lati" id="lati" value="0"/>
+                  <input type="hidden" name="longi" id="longi" value="0"/>
+                <div class="mb-3">
+                    <label>Username</label>
+                    <input type="text" name="email" id="email" class="inputs form-control">
+                </div>
+                <div>
+                    <label>Password</label>
+                    <input type="password" name="passwd" id="passwd" class="inputs form-control">
+                </div>
+                <div class="mb-3">
+                    <input class="inputs form-check-input" type="checkbox" id="showPasswd" onclick="showPass()" style="cursor:pointer;"/>
+                      <label class="inputs form-check-label" for="showPasswd"> Show Password </label>
+                </div>
+                <div class="d-grid mb-3">
+                    <button id="login-btn" class="btn btn-primary" type="submit" name="button">Login</button>
+                </div>
+                <div>
+                    <div class="col d-flex justify-content-center">
+                        <a id="login-link" href="/register">New Here? Let's get started</a>
                     </div>
-                    <div>
-                        <label>Password</label>
-                       <input type="password" name="passwd" id="passwd" class="inputs form-control">
-                    </div>
-                    <div class="mb-3">
-                        <input class="inputs form-check-input" type="checkbox" id="showPasswd" onclick="showPass()" style="cursor:pointer;"/>
-                          <label class="inputs form-check-label" for="showPasswd"> Show Password </label>
-                    </div>
-                    <div class="d-grid mb-3">
-                        <button id="login-btn" class="btn btn-primary" type="submit" name="button">Login</button>
-                    </div>
-                    <div>
-                       <div class="col d-flex justify-content-center">
-                            <a id="login-link" href="/register">New Here? Let's get started</a>
-                        </div>
-                    </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
+    </div>
 
  
 

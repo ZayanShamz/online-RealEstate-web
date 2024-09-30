@@ -17,12 +17,12 @@
 			  <div class="row mb-4 px-3">
 				<div class="col-md-6">
 				  <div class="form-outline">
-					<input type="text" id="pname" name="pname" class="inputs form-control" placeholder="Enter Plot Name"/>
+					<input type="text" id="pname" name="pname" class="inputs form-control" placeholder="Enter Plot Name" required/>
 				  </div>
 				</div>
 				<div class="col-md-6">
 				  <div class="form-outline">
-					<select class="inputs form-control" id="dealer" name="dealer">
+					<select class="inputs form-control" id="dealer" name="dealer" required>
 						<option selected>Select Dealer</option>
 						{% for i in dealer %}
 						<option value="{{ i[0] }}">{{ i[1] }}</option>
@@ -36,12 +36,12 @@
 			  <div class="row mb-4 px-3">
 				<div class="col-md-6">
 				  <div class="form-outline">
-					<input type="text" id="area" name="area" class="form-control inputs" placeholder="Enter Plot Area (in Square Feet)"/>
+					<input type="number" id="area" name="area" class="form-control inputs" placeholder="Enter Plot Area (in Square Feet)" required/>
 				  </div>
 				</div>
 				<div class="col-md-6">
 					  <div class="form-outline">
-						  <select class="inputs form-control" id="ptype" name="ptype">
+						  <select class="inputs form-control" id="ptype" name="ptype" required>
 								<option value="">Select Pot Type</option>
 								<option value="land">Land</option>
 								<option value="building">Building</option>
@@ -58,31 +58,31 @@
 				</div>
 				<div class="col-md-6">
 					<div class="form-outline">
-						<input type="text" name="price" class="inputs form-control" placeholder="Enter Price">
+						<input type="number" name="price" class="inputs form-control" placeholder="Enter Price" required/>
 					</div>
 				</div>
 			  </div>
 
 			  <div class="row mb-4 px-3">
 				  <div class="col-md-3">
-					  <input type="text" name="lat" id="lat" class="inputs form-control" placeholder="Latitude">
+					  <input type="text" name="lat" id="lat" class="inputs form-control" placeholder="Latitude" required/>
 				  </div>
 				  <div class="col-md-3">
-					  <input type="text" name="lon" id="lon" class="inputs form-control" placeholder="Longitude"/>
+					  <input type="text" name="lon" id="lon" class="inputs form-control" placeholder="Longitude" required/>
 				  </div>
 				  <div class="col-md-6">
 					   <div class="form-outline">
-								  <input type="file" name="files" class="inputs form-control" multiple>
+								  <input type="file" name="files" class="inputs form-control" multiple required>
 					   </div>
 				  </div>
 			  </div>
 
-			  <div class="row mb-4 px-3">
+			  <div class="row mb-4 px-3" id="usr_cntrols">
 					<div class="col-md-6 d-flex justify-content-end">
-					  <div onclick="goBack()" class="btn btn-outline-secondary">Back</div>
+					  <div onclick="goBack()" class="btn user-back">Back</div>
 					</div>
 					<div class="col-md-6 d-flex justify-content-start">
-					  <button type="submit" id="login-btn" class="btn btn-warning btn-block">SUBMIT</button>
+					  <button type="submit" id="login-btn" class="btn user-btns btn-block">SUBMIT</button>
 					</div>
 			  </div>
 
